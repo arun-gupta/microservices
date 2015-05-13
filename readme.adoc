@@ -1,0 +1,5 @@
+# Refactoring monolith to microservices
+
+This workspace will show how to refactor a monolith to a
+microservices-based application.
+
