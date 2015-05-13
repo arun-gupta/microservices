@@ -3,8 +3,6 @@ package org.javaee7.wildfly.samples.everest.catalog;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -14,7 +12,8 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i")
+    @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i"),
+    @NamedQuery(name = "Item.findById", query = "SELECT i FROM Item i where i.id = :id")
 })
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -26,6 +25,9 @@ public class Item implements Serializable {
 
     @Column
     private int type;
+    
+    @Column(length=100)
+    private String description;
     
     public Item() { }
 
@@ -56,5 +58,13 @@ public class Item implements Serializable {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

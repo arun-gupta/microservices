@@ -4,25 +4,34 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
-        <ui:composition template="./WEB-INF/template.xhtml">
+        <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h2>Cart</h2>
+                <h2>Catalog</h2>
+
                 <h:dataTable value="#{itemBean.items}" var="item">
                     <h:column>
                         <f:facet name="header">Item Name</f:facet>
-                            #{item.name}
+                        <h:link value="#{item.name}" outcome="item">
+                            <f:param name="itemId" value="#{item.id}"/>
+                        </h:link>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Item Type</f:facet>
                             #{item.type}
                     </h:column>
+
+                    <!--                    <h:column>
+                                            <f:facet name="header">Quantity</f:facet>
+                                            <h:inputText value="" />
+                                        </h:column>-->
                 </h:dataTable>
+
             </ui:define>
 
         </ui:composition>
