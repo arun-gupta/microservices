@@ -17,6 +17,9 @@ public class ItemType implements Serializable {
     @Column
     private String name;
 
+    public ItemType() {
+    }
+
     public ItemType(int id, String name) {
         this.id = id;
         this.name = name;

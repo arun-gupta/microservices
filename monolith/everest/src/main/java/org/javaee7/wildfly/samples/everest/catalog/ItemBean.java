@@ -2,8 +2,7 @@ package org.javaee7.wildfly.samples.everest.catalog;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.ejb.Stateless;
-import javax.faces.bean.ManagedProperty;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,7 +14,7 @@ import org.javaee7.wildfly.samples.everest.cart.Cart;
  * @author arungupta
  */
 @Named
-@Stateless
+@RequestScoped
 public class ItemBean implements Serializable {
     @PersistenceContext EntityManager em;
     
@@ -30,7 +29,7 @@ public class ItemBean implements Serializable {
         return em.createNamedQuery("Item.findById", Item.class).setParameter("id", itemId).getSingleResult();
     }
     
-    public void addItemsToCart() {
-        // add them to cart
+    public Item getItemWithId(int itemId) {
+        return em.createNamedQuery("Item.findById", Item.class).setParameter("id", itemId).getSingleResult();
     }
 }
