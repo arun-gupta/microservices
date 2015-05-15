@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import org.javaee7.wildfly.samples.everest.cart.Cart;
 import org.javaee7.wildfly.samples.everest.cart.CartItem;
 
@@ -23,6 +24,7 @@ public class OrderBean implements Serializable {
     
     @PersistenceContext EntityManager em;
     
+    @Transactional
     public void saveOrder() {
         Order order = new Order();
         List<OrderItem> items = new ArrayList<>();
@@ -36,7 +38,7 @@ public class OrderBean implements Serializable {
         order.setOrderItems(items);
         try {
             em.persist(order);
-            status = order.orderId + " order successfully posted";
+            status = "Order successful, order number: " + order.orderId;
             
             cart.clearCart();
         } catch (Exception e) {

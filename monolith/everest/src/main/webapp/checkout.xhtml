@@ -25,7 +25,7 @@
                     <b>Country:</b> #{uzerItem.country} <p/>
                     <b>Credit Card:</b> #{uzerItem.creditcard} <p/>
 
-                    <h:commandButton value="Confirm and Pay" action="confirm"/>
+                    <h:commandButton value="Confirm and Pay" action="confirm" actionListener="#{orderBean.saveOrder()}"/>
                 </h:form>
 
             </ui:define>
