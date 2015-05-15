@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <f:view contracts="main">
+            <ui:composition template="/template.xhtml">
+
+                <ui:define name="content">
+                    <h2>Create User</h2>
+
+                    <h:form>
+                        <b>Login:</b> <h:inputText value="#{uzerItem.login}"/> <p/>
+                        <b>Password:</b> <h:inputSecret value="#{uzerItem.password}" /> <p/>
+                        <b>Name:</b> <h:inputText value="#{uzerItem.username}"/> <p/>
+                        <b>Address Line 1:</b> <h:inputText value="#{uzerItem.address1}"/> <p/>
+                        <b>Address Line 2:</b> <h:inputText value="#{uzerItem.address2}"/> <p/>
+                        <b>City:</b> <h:inputText value="#{uzerItem.city}"/> <p/>
+                        <b>State:</b> <h:inputText value="#{uzerItem.state}"/> <p/>
+                        <b>Zip:</b> <h:inputText value="#{uzerItem.zip}"/> <p/>
+                        <b>Country:</b> <h:inputText value="#{uzerItem.country}"/> <p/>
+                        <b>Credit Card:</b> <h:inputText value="#{uzerItem.creditcard}"/> <p/>
+
+                        <p/>
+                        <h:commandButton value="Create User" action="user-status" actionListener="#{uzerBean.addUzer()}"/>
+                    </h:form>
+                </ui:define>
+            </ui:composition>
+        </f:view>
+
+    </body>
+</html>
