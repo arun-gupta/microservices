@@ -25,6 +25,7 @@ public class UzerBean implements Serializable {
         Uzer uzer = new Uzer();
         uzer.setLogin(uzerItem.getLogin());
         uzer.setPassword(uzerItem.getPassword());
+        uzer.setUsername(uzerItem.getUsername());
         uzer.setAddress1(uzerItem.getAddress1());
         uzer.setAddress2(uzerItem.getAddress2());
         uzer.setCity(uzerItem.getCity());
