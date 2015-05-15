@@ -8,7 +8,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 /**
- * @author Arun Gupta
+ * @author arungupta
  */
 @Entity
 @NamedQueries({

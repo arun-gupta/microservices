@@ -4,11 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.javaee7.wildfly.samples.everest.cart.Cart;
 
 /**
  * @author arungupta
@@ -17,8 +15,6 @@ import org.javaee7.wildfly.samples.everest.cart.Cart;
 @SessionScoped
 public class ItemBean implements Serializable {
     @PersistenceContext EntityManager em;
-    
-    @Inject Cart cart;
     
     public List<Item> getItems() {
         return em.createNamedQuery("Item.findAll", Item.class).getResultList();

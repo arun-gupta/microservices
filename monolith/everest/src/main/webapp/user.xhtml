@@ -12,15 +12,16 @@
                 <h2>Create User</h2>
 
                 <h:form>
-                    Login: <h:inputText value="#{uzerItem.login}"/> <p/>
-                    Password: <h:inputSecret value="#{uzerItem.password}" /> <p/>
-                    Name: <h:inputText value="#{uzerItem.username}"/> <p/>
-                    Address Line 1: <h:inputText value="#{uzerItem.address1}"/> <p/>
-                    Address Line 2: <h:inputText value="#{uzerItem.address2}"/> <p/>
-                    City: <h:inputText value="#{uzerItem.city}"/> <p/>
-                    State: <h:inputText value="#{uzerItem.state}"/> <p/>
-                    Zip: <h:inputText value="#{uzerItem.zip}"/> <p/>
-                    Country: <h:inputText value="#{uzerItem.country}"/> <p/>
+                    <b>Login:</b> <h:inputText value="#{uzerItem.login}"/> <p/>
+                    <b>Password:</b> <h:inputSecret value="#{uzerItem.password}" /> <p/>
+                    <b>Name:</b> <h:inputText value="#{uzerItem.username}"/> <p/>
+                    <b>Address Line 1:</b> <h:inputText value="#{uzerItem.address1}"/> <p/>
+                    <b>Address Line 2:</b> <h:inputText value="#{uzerItem.address2}"/> <p/>
+                    <b>City:</b> <h:inputText value="#{uzerItem.city}"/> <p/>
+                    <b>State:</b> <h:inputText value="#{uzerItem.state}"/> <p/>
+                    <b>Zip:</b> <h:inputText value="#{uzerItem.zip}"/> <p/>
+                    <b>Country:</b> <h:inputText value="#{uzerItem.country}"/> <p/>
+                    <b>Credit Card:</b> <h:inputText value="#{uzerItem.creditcard}"/> <p/>
 
                     <p/>
                     <h:commandButton value="Create User" action="user-status" actionListener="#{uzerBean.addUzer()}"/>

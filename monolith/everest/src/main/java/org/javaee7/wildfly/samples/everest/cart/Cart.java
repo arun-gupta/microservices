@@ -9,7 +9,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.javaee7.wildfly.samples.everest.catalog.ItemBean;
 
 /**
  * @author arungupta
@@ -21,8 +20,6 @@ public class Cart implements Serializable {
     
     @Inject CartItem currentCartItem;
     
-    @Inject ItemBean itemBean;
-    
     @PostConstruct
     private void init() {
         items = new ArrayList<>();
@@ -33,7 +30,6 @@ public class Cart implements Serializable {
     }
     
     public void addItemToCart(ActionEvent event) {
-        System.out.println("addToCart");
         boolean exists = false;
         
         int itemId = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("itemId"));
@@ -51,5 +47,9 @@ public class Cart implements Serializable {
             CartItem cartItem = new CartItem(itemId, itemName, currentCartItem.getItemCount());
             items.add(cartItem);
         }
+    }
+    
+    public void clearCart() {
+        items.clear();
     }
 }

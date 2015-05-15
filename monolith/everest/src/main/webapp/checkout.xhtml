@@ -11,18 +11,19 @@
             <ui:define name="content">
                 <h2>Shipping</h2>
                 <h:form>
-                    Login name: <h:inputText value="#{shipping.login}"/> <p/>
+                    Login name: <h:inputText value="#{uzerItem.login}"/> <p/>
                     
-                    <h:commandButton value="Show Details" action="checkout" actionListener="#{shipping.updateShippingDetail()}"/>
+                    <h:commandButton value="Show Details" action="checkout" actionListener="#{shipping.findShippingDetail()}"/>
                     <p/>
                     
-                    Name: #{shipping.name} <p/>
-                    Address Line 1: #{shipping.address1} <p/>
-                    Address Line 2: #{shipping.address2} <p/>
-                    City: #{shipping.city} <p/>
-                    Zip: #{shipping.zip} <p/>
-                    Country: #{shipping.country} <p/>
-                    Credit: #{shipping.creditcard} <p/>
+                    <b>Name:</b> #{uzerItem.username} <p/>
+                    <b>Address Line 1:</b> #{uzerItem.address1} <p/>
+                    <b>Address Line 2:</b> #{uzerItem.address2} <p/>
+                    <b>City:</b> #{uzerItem.city} <p/>
+                    <b>State:</b> #{uzerItem.state} <p/>
+                    <b>Zip:</b> #{uzerItem.zip} <p/>
+                    <b>Country:</b> #{uzerItem.country} <p/>
+                    <b>Credit Card:</b> #{uzerItem.creditcard} <p/>
 
                     <h:commandButton value="Confirm and Pay" action="confirm"/>
                 </h:form>

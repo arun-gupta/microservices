@@ -23,15 +23,15 @@ public class UzerBean implements Serializable {
     @Transactional
     public void addUzer() {
         Uzer uzer = new Uzer();
-        uzer.login = uzerItem.login;
-        uzer.password = uzerItem.password;
-        uzer.address1 = uzerItem.address1;
-        uzer.address2 = uzerItem.address2;
-        uzer.city = uzerItem.city;
-        uzer.state = uzerItem.state;
-        uzer.country = uzerItem.country;
-        uzer.zip = uzerItem.zip;
-        uzer.creditCard = uzerItem.creditcard;
+        uzer.setLogin(uzerItem.getLogin());
+        uzer.setPassword(uzerItem.getPassword());
+        uzer.setAddress1(uzerItem.getAddress1());
+        uzer.setAddress2(uzerItem.getAddress2());
+        uzer.setCity(uzerItem.getCity());
+        uzer.setState(uzerItem.getState());
+        uzer.setCountry(uzerItem.getCountry());
+        uzer.setZip(uzerItem.getZip());
+        uzer.setCreditcard(uzerItem.getCreditcard());
         
         try {
             em.persist(uzer);

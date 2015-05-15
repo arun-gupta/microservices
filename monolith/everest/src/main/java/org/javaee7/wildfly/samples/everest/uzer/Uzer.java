@@ -51,7 +51,7 @@ public class Uzer implements Serializable {
     String country;
 
     @Column
-    String creditCard;
+    String creditcard;
 
     public String getLogin() {
         return login;
@@ -125,12 +125,13 @@ public class Uzer implements Serializable {
         this.country = country;
     }
 
-    public String getCreditCard() {
-        return creditCard;
+    public String getCreditcard() {
+        return creditcard;
     }
 
-    public void setCreditCard(String creditCard) {
-        this.creditCard = creditCard;
+    public void setCreditcard(String creditcard) {
+        this.creditcard = creditcard;
     }
+
     
 }

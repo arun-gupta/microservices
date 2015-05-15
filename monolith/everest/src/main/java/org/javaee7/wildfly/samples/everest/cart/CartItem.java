@@ -2,9 +2,7 @@ package org.javaee7.wildfly.samples.everest.cart;
 
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-import org.javaee7.wildfly.samples.everest.catalog.ItemBean;
 
 /**
  * @author arungupta
@@ -13,12 +11,8 @@ import org.javaee7.wildfly.samples.everest.catalog.ItemBean;
 @SessionScoped
 public class CartItem implements Serializable {
     private int itemId;
-    
     private String itemName;
-    
     private int itemCount;
-    
-    @Inject ItemBean itemBean;
     
     public CartItem() { }
 

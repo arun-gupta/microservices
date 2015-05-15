@@ -37,6 +37,8 @@ public class OrderBean implements Serializable {
         try {
             em.persist(order);
             status = order.orderId + " order successfully posted";
+            
+            cart.clearCart();
         } catch (Exception e) {
             status = e.getLocalizedMessage();
         }

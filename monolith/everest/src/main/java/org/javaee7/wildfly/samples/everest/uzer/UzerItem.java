@@ -10,16 +10,16 @@ import javax.inject.Named;
 @Named
 @SessionScoped
 public class UzerItem implements Serializable {
-    String login;
-    String password;
-    String username;
-    String address1;
-    String address2;
-    String city;
-    String state;
-    String zip;
-    String country;
-    String creditcard;
+    private String login;
+    private String password;
+    private String username;
+    private String address1;
+    private String address2;
+    private String city;
+    private String state;
+    private String zip;
+    private String country;
+    private String creditcard;
 
     public String getLogin() {
         return login;
@@ -100,6 +100,5 @@ public class UzerItem implements Serializable {
     public void setCreditcard(String creditcard) {
         this.creditcard = creditcard;
     }
-    
-    
+
 }
