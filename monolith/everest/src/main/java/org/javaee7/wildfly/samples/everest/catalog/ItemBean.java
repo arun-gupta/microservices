@@ -2,7 +2,7 @@ package org.javaee7.wildfly.samples.everest.catalog;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +14,7 @@ import org.javaee7.wildfly.samples.everest.cart.Cart;
  * @author arungupta
  */
 @Named
-@RequestScoped
+@SessionScoped
 public class ItemBean implements Serializable {
     @PersistenceContext EntityManager em;
     

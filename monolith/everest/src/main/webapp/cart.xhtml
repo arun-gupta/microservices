@@ -11,7 +11,7 @@
 
             <ui:define name="content">
                 <h2>Cart</h2>
-                <h:dataTable value="#{cart.item}" var="item">
+                <h:dataTable value="#{cart.items}" var="item" border="1">
                     <h:column>
                         <f:facet name="header">Item Name</f:facet>
                             #{item.itemName}
@@ -22,6 +22,11 @@
                             #{item.itemCount}
                     </h:column>
                 </h:dataTable>
+                <p/>
+                <h:form>
+                    <h:commandButton value="Continue Shopping" action="catalog"/>
+                    <h:commandButton value="Checkout" action="checkout"/>
+                </h:form>
             </ui:define>
 
         </ui:composition>

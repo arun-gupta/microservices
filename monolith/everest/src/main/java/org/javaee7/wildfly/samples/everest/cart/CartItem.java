@@ -1,7 +1,7 @@
 package org.javaee7.wildfly.samples.everest.cart;
 
 import java.io.Serializable;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.javaee7.wildfly.samples.everest.catalog.ItemBean;
@@ -10,7 +10,7 @@ import org.javaee7.wildfly.samples.everest.catalog.ItemBean;
  * @author arungupta
  */
 @Named
-@RequestScoped
+@SessionScoped
 public class CartItem implements Serializable {
     private int itemId;
     
@@ -22,13 +22,18 @@ public class CartItem implements Serializable {
     
     public CartItem() { }
 
+    public CartItem(int itemId, String itemName, int itemCount) {
+        this.itemId = itemId;
+        this.itemName = itemName;
+        this.itemCount = itemCount;
+    }
+    
     public int getItemId() {
         return itemId;
     }
 
     public void setItemId(int itemId) {
         this.itemId = itemId;
-        this.itemName = itemBean.getItemWithId(itemId).getName();
     }
 
     public int getItemCount() {
@@ -43,7 +48,7 @@ public class CartItem implements Serializable {
         return itemName;
     }
 
-//    public void setName(String description) {
-//        this.name = description;
-//    }
+    public void setName(String name) {
+        this.itemName = name;
+    }
 }

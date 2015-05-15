@@ -9,19 +9,15 @@
         <ui:composition template="./WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <ul>
-                    <li>Create User</li>
-                    <li>Add items from Catalog to Shopping Cart</li>
-                    <li>Review Shopping Cart</li>
-                    <li>Add Shipping Address</li>
-                    <li>Add Payment Details</li>
-                </ul>
+                <h2>Create User Status</h2>
 
+                #{uzerBean.status}
+                <p/>
+                
                 <h:form>
-                    <h:commandButton value="Create User" action="user"/>
+                    <h:commandButton value="Start Shopping" action="catalog"/>
                 </h:form>
             </ui:define>
-
         </ui:composition>
 
     </body>

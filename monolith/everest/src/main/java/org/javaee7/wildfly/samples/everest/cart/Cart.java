@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
@@ -15,7 +15,7 @@ import org.javaee7.wildfly.samples.everest.catalog.ItemBean;
  * @author arungupta
  */
 @Named
-@ConversationScoped
+@SessionScoped
 public class Cart implements Serializable {
     private List<CartItem> items;
     
@@ -28,7 +28,7 @@ public class Cart implements Serializable {
         items = new ArrayList<>();
     }
 
-    public List<CartItem> getItem() {
+    public List<CartItem> getItems() {
         return items;
     }
     
@@ -37,21 +37,18 @@ public class Cart implements Serializable {
         boolean exists = false;
         
         int itemId = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("itemId"));
+        String itemName = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("itemName");
         
         for (CartItem item : items) {
             if (itemId == item.getItemId()) {
                 exists = true;
-                CartItem cartItem = new CartItem();
-                cartItem.setItemId(item.getItemId());
-                cartItem.setItemCount(item.getItemCount() + currentCartItem.getItemCount());
+                CartItem cartItem = new CartItem(item.getItemId(), itemName, item.getItemCount() + currentCartItem.getItemCount());
                 items.remove(item);
                 items.add(cartItem);
             }
         }
         if (!exists) {
-            CartItem cartItem = new CartItem();
-            cartItem.setItemId(itemId);
-            cartItem.setItemCount(currentCartItem.getItemCount());
+            CartItem cartItem = new CartItem(itemId, itemName, currentCartItem.getItemCount());
             items.add(cartItem);
         }
     }

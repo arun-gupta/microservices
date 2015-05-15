@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
@@ -9,19 +10,14 @@
         <ui:composition template="./WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <ul>
-                    <li>Create User</li>
-                    <li>Add items from Catalog to Shopping Cart</li>
-                    <li>Review Shopping Cart</li>
-                    <li>Add Shipping Address</li>
-                    <li>Add Payment Details</li>
-                </ul>
+                <h2>Order Confirmation</h2>
 
+                #{orderBean.status}
+                
                 <h:form>
-                    <h:commandButton value="Create User" action="user"/>
+                    <h:commandButton value="Continue Shopping?" action="catalog"/>
                 </h:form>
             </ui:define>
-
         </ui:composition>
 
     </body>
