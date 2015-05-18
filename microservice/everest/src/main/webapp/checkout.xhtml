@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <f:view contracts="main">
+
+            <ui:composition template="./WEB-INF/template.xhtml">
+
+                <ui:define name="content">
+                    <h2>Shipping</h2>
+                    <h:form>
+                        Login name: <h:inputText value="#{uzerItem.login}"/> <p/>
+
+                        <h:commandButton value="Show Details" action="checkout" actionListener="#{shipping.findShippingDetail()}"/>
+                        <p/>
+
+                        <b>Name:</b> #{uzerItem.username} <p/>
+                        <b>Address Line 1:</b> #{uzerItem.address1} <p/>
+                        <b>Address Line 2:</b> #{uzerItem.address2} <p/>
+                        <b>City:</b> #{uzerItem.city} <p/>
+                        <b>State:</b> #{uzerItem.state} <p/>
+                        <b>Zip:</b> #{uzerItem.zip} <p/>
+                        <b>Country:</b> #{uzerItem.country} <p/>
+                        <b>Credit Card:</b> #{uzerItem.creditcard} <p/>
+
+                        <h:commandButton value="Confirm and Pay" action="confirm" actionListener="#{orderBean.saveOrder()}"/>
+                    </h:form>
+
+                </ui:define>
+
+            </ui:composition>
+
+        </f:view>
+    </body>
+</html>
