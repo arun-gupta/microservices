@@ -22,7 +22,7 @@
             <div>
                 <div id="left">
                     <ui:insert name="left">
-                        <h:outputLink value="http://localhost:8080/user/faces/user-1.0-SNAPSHOT.xhtml">Create User</h:outputLink><p/>
+                        <h:outputLink value="${facesContext.externalContext.requestContextPath}/faces/user.xhtml">Create User</h:outputLink><p/>
                         <h:outputLink value="${facesContext.externalContext.requestContextPath}/faces/catalog.xhtml">Catalog</h:outputLink><p/>
                         <h:outputLink value="${facesContext.externalContext.requestContextPath}/faces/cart.xhtml">Cart</h:outputLink><p/>
                         <h:outputLink value="${facesContext.externalContext.requestContextPath}/faces/shipping.xhtml">Shipping</h:outputLink><p/>
