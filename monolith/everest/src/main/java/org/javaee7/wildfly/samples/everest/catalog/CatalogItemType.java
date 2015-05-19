@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * @author arungupta
  */
 @Entity
-public class ItemType implements Serializable {
+public class CatalogItemType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private int id;
@@ -17,10 +17,10 @@ public class ItemType implements Serializable {
     @Column
     private String name;
 
-    public ItemType() {
+    public CatalogItemType() {
     }
 
-    public ItemType(int id, String name) {
+    public CatalogItemType(int id, String name) {
         this.id = id;
         this.name = name;
     }

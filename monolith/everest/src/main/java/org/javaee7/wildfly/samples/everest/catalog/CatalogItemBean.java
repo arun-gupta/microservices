@@ -13,19 +13,19 @@ import javax.persistence.PersistenceContext;
  */
 @Named
 @SessionScoped
-public class ItemBean implements Serializable {
+public class CatalogItemBean implements Serializable {
     @PersistenceContext EntityManager em;
     
-    public List<Item> getItems() {
-        return em.createNamedQuery("Item.findAll", Item.class).getResultList();
+    public List<CatalogItem> getItems() {
+        return em.createNamedQuery("CatalogItem.findAll", CatalogItem.class).getResultList();
     }
     
-    public Item getItem() {
+    public CatalogItem getItem() {
         int itemId = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("itemId"));
-        return em.createNamedQuery("Item.findById", Item.class).setParameter("id", itemId).getSingleResult();
+        return getItemWithId(itemId);
     }
     
-    public Item getItemWithId(int itemId) {
-        return em.createNamedQuery("Item.findById", Item.class).setParameter("id", itemId).getSingleResult();
+    public CatalogItem getItemWithId(int itemId) {
+        return em.createNamedQuery("CatalogItem.findById", CatalogItem.class).setParameter("id", itemId).getSingleResult();
     }
 }

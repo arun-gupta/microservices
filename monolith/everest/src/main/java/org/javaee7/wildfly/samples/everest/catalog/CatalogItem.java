@@ -12,10 +12,10 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Item.findAll", query = "SELECT i FROM Item i"),
-    @NamedQuery(name = "Item.findById", query = "SELECT i FROM Item i where i.id = :id")
+    @NamedQuery(name = "CatalogItem.findAll", query = "SELECT i FROM CatalogItem i"),
+    @NamedQuery(name = "CatalogItem.findById", query = "SELECT i FROM CatalogItem i where i.id = :id")
 })
-public class Item implements Serializable {
+public class CatalogItem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private int id;
@@ -29,9 +29,9 @@ public class Item implements Serializable {
     @Column(length=100)
     private String description;
     
-    public Item() { }
+    public CatalogItem() { }
 
-    public Item(String name, int type) {
+    public CatalogItem(String name, int type) {
         this.name = name;
         this.type = type;
     }
