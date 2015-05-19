@@ -41,7 +41,7 @@ public class UzerBean implements Serializable {
             return;
         }
         
-        status = "User added successfully";
+        status = "User added successfully, login: \"" + uzer.getLogin() + "\", password: \"" + uzer.getPassword() + "\"";
     }
 
     public String getStatus() {
