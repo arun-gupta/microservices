@@ -12,7 +12,7 @@
             <ui:define name="content">
                 <h2>Catalog</h2>
 
-                <h:dataTable value="#{itemBean.items}" var="item">
+                <h:dataTable value="#{catalogItemBean.items}" var="item">
                     <h:column>
                         <f:facet name="header">Item Name</f:facet>
                         <h:link value="#{item.name}" outcome="catalog-item">

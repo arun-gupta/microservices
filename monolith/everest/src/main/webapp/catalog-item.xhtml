@@ -13,8 +13,8 @@
                 <h2>Catalog Item</h2>
 
                 <h:form>
-                    <b>Name:</b> #{itemBean.item.name}<p/>
-                    <b>Description:</b> #{itemBean.item.description}<p/>
+                    <b>Name:</b> #{catalogItemBean.item.name}<p/>
+                    <b>Description:</b> #{catalogItemBean.item.description}<p/>
                     <b>Quantity:</b> 
                     <h:selectOneMenu id="itemCount"
                                      value="#{cartItem.itemCount}">
@@ -26,8 +26,8 @@
                     </h:selectOneMenu><p/>
                     <p/>
                     <h:commandButton value="Add to Cart" action="cart" actionListener="#{cart.addItemToCart}">
-                        <f:param name="itemId" value="#{itemBean.item.id}"/>
-                        <f:param name="itemName" value="#{itemBean.item.name}"/>
+                        <f:param name="itemId" value="#{catalogItemBean.item.id}"/>
+                        <f:param name="itemName" value="#{catalogItemBean.item.name}"/>
                     </h:commandButton>
                 </h:form>
             </ui:define>
