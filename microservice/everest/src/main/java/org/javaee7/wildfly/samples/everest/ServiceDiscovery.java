@@ -49,7 +49,7 @@ public class ServiceDiscovery {
     }
 
     public WebTarget getOrderService() {
-        if (null == userService) {
+        if (null == orderService) {
             try {
                 orderService = ClientBuilder.newClient().target(URI.create(new URL(ORDER_SERVICE).toExternalForm()));
             } catch (MalformedURLException ex) {
