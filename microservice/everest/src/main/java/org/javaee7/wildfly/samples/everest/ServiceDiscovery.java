@@ -25,29 +25,38 @@ public class ServiceDiscovery {
     private WebTarget catalogService;
     private WebTarget orderService;
 
-    @PostConstruct
-    public void init() {
-        try {
-            Client client = ClientBuilder.newClient();
-            userService = client.target(URI.create(new URL(USER_SERVICE).toExternalForm()));
-            
-            catalogService = client.target(URI.create(new URL(CATALOG_SERVICE).toExternalForm()));
-            
-            orderService = client.target(URI.create(new URL(ORDER_SERVICE).toExternalForm()));
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ServiceDiscovery.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     public WebTarget getUserService() {
+        if (null == userService) {
+            try {
+                userService = ClientBuilder.newClient().target(URI.create(new URL(USER_SERVICE).toExternalForm()));
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(ServiceDiscovery.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
         return userService;
     }
 
     public WebTarget getCatalogService() {
+        if (null == catalogService) {
+            try {
+                catalogService = ClientBuilder.newClient().target(URI.create(new URL(CATALOG_SERVICE).toExternalForm()));
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(ServiceDiscovery.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return catalogService;
     }
 
     public WebTarget getOrderService() {
+        if (null == userService) {
+            try {
+                orderService = ClientBuilder.newClient().target(URI.create(new URL(ORDER_SERVICE).toExternalForm()));
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(ServiceDiscovery.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
         return orderService;
     }
 }
