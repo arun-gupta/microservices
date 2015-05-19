@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
