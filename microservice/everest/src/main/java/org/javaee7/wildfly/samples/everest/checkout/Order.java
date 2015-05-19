@@ -1,6 +1,7 @@
 package org.javaee7.wildfly.samples.everest.checkout;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -26,6 +27,9 @@ public class Order implements Serializable {
     }
 
     public List<OrderItem> getOrderItems() {
+        if (null == orderItems) {
+            orderItems = new ArrayList<>();
+        }
         return orderItems;
     }
 
