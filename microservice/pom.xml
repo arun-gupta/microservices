@@ -11,6 +11,7 @@
     <modules>
         <module>user</module>
         <module>catalog</module>
+        <module>order</module>
         <module>contracts</module>
         <module>everest</module>
     </modules>
