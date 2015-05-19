@@ -27,15 +27,13 @@ public class OrderBean implements Serializable {
     @Inject ServiceDiscovery services;
     
     public void saveOrder() {
-        List<OrderItem> items = new ArrayList<>();
         List<CartItem> cartItems = cart.getItems();
         for (CartItem cartItem : cartItems) {
             OrderItem orderItem = new OrderItem();
             orderItem.itemId = cartItem.getItemId();
             orderItem.itemCount = cartItem.getItemCount();
-            items.add(orderItem);
+            order.getOrderItems().add(orderItem);
         }
-        order.setOrderItems(items);
         
         try {
             Response response = services.getOrderService().request().post(Entity.xml(order));
