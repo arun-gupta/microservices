@@ -1,6 +1,7 @@
 package org.javaee7.wildfly.samples.everest.order;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -34,6 +35,9 @@ public class Order implements Serializable {
     }
 
     public List<OrderItem> getOrderItems() {
+        if (null == orderItems) {
+            orderItems = new ArrayList<>();
+        }
         return orderItems;
     }
 

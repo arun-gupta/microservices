@@ -1,7 +1,12 @@
 package org.javaee7.wildfly.samples.everest.order;
 
+import java.io.StringReader;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -25,10 +30,24 @@ public class OrderREST {
 
     @POST
     @Consumes({"application/xml", "application/json"})
-    public Response create(Order entity) {
-        em.persist(entity);
+    public Response create(String entity) {
+        JsonObject jsonObject = Json.createReader(new StringReader(entity)).readObject();
         
-        return Response.ok(entity).build();
+        Order order = new Order();
+//        order.setOrderId(jsonObject.getInt("orderId"));
+        JsonArray orderItems = jsonObject.getJsonArray("orderItems");
+        for (int i = 0; i< orderItems.size(); i++) {
+            OrderItem orderItem = new OrderItem(orderItems.getJsonObject(i).getInt("itemId"), 
+                    orderItems.getJsonObject(i).getInt("itemCount"));
+            
+            order.getOrderItems().add(orderItem);
+        }
+        
+        em.persist(order);
+        
+        JsonObject response = Json.createObjectBuilder().add("orderId", order.getOrderId()).build();
+        
+        return Response.ok(response).build();
     }
 
     @PUT

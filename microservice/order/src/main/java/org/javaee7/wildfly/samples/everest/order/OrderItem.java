@@ -11,6 +11,14 @@ public class OrderItem implements Serializable {
     int itemId;
     int itemCount;
 
+    public OrderItem() {
+    }
+    
+    public OrderItem(int itemId, int itemCount) {
+        this.itemId = itemId;
+        this.itemCount = itemCount;
+    }
+    
     public int getItemId() {
         return itemId;
     }
