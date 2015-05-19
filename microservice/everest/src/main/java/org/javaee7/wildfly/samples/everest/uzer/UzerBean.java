@@ -48,12 +48,11 @@ public class UzerBean implements Serializable {
 
         Response.StatusType statusInfo = response.getStatusInfo();
         
-        System.out.println("code: " + statusInfo.getStatusCode());
         if (statusInfo.getFamily() == Response.Status.Family.SUCCESSFUL) {
             JsonObject jsonResponse = Json.createReader(new StringReader(response.readEntity(String.class))).readObject();
-            status = "User added successfully, " +
-                    "login: " + jsonResponse.get("login") +
-                    "password: " + jsonResponse.get("password");
+            status = "User added successfully," +
+                    " login: " + jsonResponse.get("login") +
+                    " password: " + jsonResponse.get("password");
         } else
             status = statusInfo.getReasonPhrase();
     }

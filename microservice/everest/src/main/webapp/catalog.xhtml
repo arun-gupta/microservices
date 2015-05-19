@@ -16,9 +16,11 @@
                     <h:dataTable value="#{catalogBean.allItems}" var="item">
                         <h:column>
                             <f:facet name="header">Item Name</f:facet>
-                            <h:link value="#{item.name}" outcome="catalog-item">
-                                <f:param name="itemId" value="#{item.id}"/>
-                            </h:link>
+                            <h:form>
+                                <h:commandLink value="#{item.name}" action="catalog-item" actionListener="#{catalogBean.catalogServiceEndpoint()}">
+                                    <f:param name="itemId" value="#{item.id}"/>
+                                </h:commandLink>
+                            </h:form>
                         </h:column>
 
                         <h:column>

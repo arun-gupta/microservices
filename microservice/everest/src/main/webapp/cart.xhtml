@@ -8,19 +8,19 @@
     <body>
         <f:view contracts="main">
 
-            <ui:composition template="./WEB-INF/template.xhtml">
+            <ui:composition template="/template.xhtml">
 
                 <ui:define name="content">
                     <h2>Cart</h2>
                     <h:dataTable value="#{cart.items}" var="item" border="1">
                         <h:column>
                             <f:facet name="header">Item Name</f:facet>
-                                #{catalogItem.itemName}
+                                #{item.itemName}
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Item Count</f:facet>
-                                #{catalogItem.itemCount}
+                                #{item.itemCount}
                         </h:column>
                     </h:dataTable>
                     <p/>

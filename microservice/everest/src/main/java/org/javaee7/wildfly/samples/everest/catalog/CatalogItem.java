@@ -1,7 +1,7 @@
 package org.javaee7.wildfly.samples.everest.catalog;
 
 import java.io.Serializable;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author arungupta
  */
 @Named
-@RequestScoped
+@SessionScoped
 @XmlRootElement
 public class CatalogItem implements Serializable {
     private int id;

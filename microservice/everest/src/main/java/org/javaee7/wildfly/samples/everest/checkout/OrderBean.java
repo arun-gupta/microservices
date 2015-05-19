@@ -42,9 +42,9 @@ public class OrderBean implements Serializable {
 
             Response.StatusType statusInfo = response.getStatusInfo();
 
-            if (statusInfo.getStatusCode() == Response.Status.CREATED.getStatusCode())
+            if (statusInfo.getFamily() == Response.Status.Family.SUCCESSFUL) {
                 status = "Order successful, order number: " + response.readEntity(Order.class).orderId;
-            else
+            } else
                 status = statusInfo.getReasonPhrase();
 
             cart.clearCart();

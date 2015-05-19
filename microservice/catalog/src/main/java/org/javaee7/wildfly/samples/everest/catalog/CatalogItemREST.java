@@ -43,7 +43,7 @@ public class CatalogItemREST {
 
     @GET
     @Path("{id}")
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/xml; qs=0.50", "application/json"})
     public CatalogItem find(@PathParam("id") Integer id) {
         return em.createNamedQuery("Item.findById", CatalogItem.class).setParameter("id", id).getSingleResult();
     }
