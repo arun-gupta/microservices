@@ -1,7 +1,11 @@
 package org.javaee7.wildfly.samples.everest.uzer;
 
+import java.io.StringReader;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -25,8 +29,22 @@ public class UserREST {
 
     @POST
     @Consumes({"application/xml", "application/json"})
-    public Response create(Uzer entity) {
-        em.persist(entity);
+    public Response create(String entity) {
+        JsonObject jsonObject = Json.createReader(new StringReader(entity)).readObject();
+        
+        Uzer uzer = new Uzer();
+        uzer.setLogin(jsonObject.getString("login"));
+        uzer.setPassword(jsonObject.getString("password"));
+        uzer.setUsername(jsonObject.getString("username"));
+        uzer.setAddress1(jsonObject.getString("address1"));
+        uzer.setAddress2(jsonObject.getString("address2"));
+        uzer.setCity(jsonObject.getString("city"));
+        uzer.setState(jsonObject.getString("state"));
+        uzer.setCountry(jsonObject.getString("country"));
+        uzer.setZip(jsonObject.getString("zip"));
+        uzer.setCreditcard(jsonObject.getString("creditcard"));
+        
+        em.persist(uzer);
         
         return Response.ok(entity).build();
     }
