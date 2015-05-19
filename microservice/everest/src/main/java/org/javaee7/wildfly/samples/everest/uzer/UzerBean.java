@@ -1,9 +1,14 @@
 package org.javaee7.wildfly.samples.everest.uzer;
 
 import java.io.Serializable;
+import java.io.StringReader;
+import java.io.StringWriter;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonWriter;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 import org.javaee7.wildfly.samples.everest.ServiceDiscovery;
@@ -21,27 +26,35 @@ public class UzerBean implements Serializable {
     String status;
     
     public void addUzer() {
-        UzerItem2 uzer2 = new UzerItem2();
-        uzer2.setLogin(uzerItem.getLogin());
-        uzer2.setPassword(uzerItem.getPassword());
-        uzer2.setUsername(uzerItem.getUsername());
-        uzer2.setPassword(uzerItem.getPassword());
-        uzer2.setAddress1(uzerItem.getAddress1());
-        uzer2.setAddress2(uzerItem.getAddress2());
-        uzer2.setCity(uzerItem.getCity());
-        uzer2.setState(uzerItem.getState());
-        uzer2.setCountry(uzerItem.getCountry());
-        uzer2.setZip(uzerItem.getZip());
-        uzer2.setCreditcard(uzerItem.getCreditcard());
         
-        Response response = services.getUserService().register(UzerItem2.class).request().post(Entity.xml(uzer2));
+        JsonObject jsonObject = Json.createObjectBuilder()
+                .add("login", uzerItem.getLogin())
+                .add("password", uzerItem.getPassword())
+                .add("username", uzerItem.getUsername())
+                .add("address1", uzerItem.getAddress1())
+                .add("address2", uzerItem.getAddress2())
+                .add("city", uzerItem.getCity())
+                .add("state", uzerItem.getState())
+                .add("country", uzerItem.getCountry())
+                .add("zip", uzerItem.getZip())
+                .add("creditcard", uzerItem.getCreditcard())
+                .build();
+        StringWriter w = new StringWriter();
+        try (JsonWriter writer = Json.createWriter(w)) {
+            writer.write(jsonObject);
+        }
+        
+        Response response = services.getUserService().request().post(Entity.xml(w.toString()));
 
         Response.StatusType statusInfo = response.getStatusInfo();
         
         System.out.println("code: " + statusInfo.getStatusCode());
-        if (statusInfo.getStatusCode() == Response.Status.CREATED.getStatusCode())
-            status = "User added successfully";
-        else
+        if (statusInfo.getFamily() == Response.Status.Family.SUCCESSFUL) {
+            JsonObject jsonResponse = Json.createReader(new StringReader(response.readEntity(String.class))).readObject();
+            status = "User added successfully, " +
+                    "login: " + jsonResponse.get("login") +
+                    "password: " + jsonResponse.get("password");
+        } else
             status = statusInfo.getReasonPhrase();
     }
     
