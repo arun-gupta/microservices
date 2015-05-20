@@ -146,27 +146,22 @@
         </profile>
         <profile>
             <id>docker</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>wildfly-swarm-jaxrs</artifactId>
-                </dependency>
-            </dependencies>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.jolokia</groupId>
                         <artifactId>docker-maven-plugin</artifactId>
-                        <version>0.11.3</version>
+                        <version>0.11.5-M1</version>
                         <configuration>
                             <images>
                                 <image>
                                     <alias>user</alias>
                                     <name>arungupta/shoppingcart-user</name>
                                     <build>
-                                        <from>jboss/wildfly</from>
+                                        <from>arungupta/wildfly:8.2</from>
                                         <assembly>
                                             <descriptor>assembly.xml</descriptor>
+                                            <basedir>/</basedir>
                                         </assembly>
                                         <ports>
                                             <port>8080</port>
