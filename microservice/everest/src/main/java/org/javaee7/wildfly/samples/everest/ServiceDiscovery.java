@@ -15,9 +15,9 @@ import javax.ws.rs.client.WebTarget;
 @ApplicationScoped
 public class ServiceDiscovery {
 
-    final String USER_SERVICE = "http://localhost:8080/user-1.0-SNAPSHOT/resources/user";
-    final String CATALOG_SERVICE = "http://localhost:8080/catalog-1.0-SNAPSHOT/resources/catalog";
-    final String ORDER_SERVICE = "http://localhost:8080/order-1.0-SNAPSHOT/resources/order";
+    final String USER_SERVICE = "http://localhost:8080/user/resources/user";
+    final String CATALOG_SERVICE = "http://localhost:8080/catalog/resources/catalog";
+    final String ORDER_SERVICE = "http://localhost:8080/order/resources/order";
 
     private WebTarget userService;
     private WebTarget catalogService;
