@@ -32,6 +32,7 @@
     </dependencies>
 
     <build>
+        <finalName>everest-web</finalName>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>

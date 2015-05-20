@@ -17,6 +17,7 @@
     <name>order</name>
 
     <build>
+        <finalName>order</finalName>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>

@@ -14,6 +14,7 @@
     <packaging>jar</packaging>
     
     <build>
+        <finalName>contracts</finalName>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>

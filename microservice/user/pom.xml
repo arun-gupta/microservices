@@ -24,6 +24,7 @@
     </dependencies>
 
     <build>
+        <finalName>user</finalName>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>

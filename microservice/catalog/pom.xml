@@ -17,6 +17,7 @@
     <name>catalog</name>
 
     <build>
+        <finalName>catalog</finalName>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>
