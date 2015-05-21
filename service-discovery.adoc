@@ -10,6 +10,16 @@ There are multiple tools used for service registry and discovery. This document 
 
 Curator
 
+. Start ZooKeeper container
++
+[source, text]
+----
+docker run -it -p 2181:2181 jplock/zookeeper
+----
++
+.
+
+
 ## Consul
 
 consul-registrar, consul-template
