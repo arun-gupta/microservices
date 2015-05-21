@@ -7,3 +7,10 @@ microservices-based application.
 . Continuous Integration
 . Continuous Deployment
 . link:service-monitoring.adoc[Service Monitoring]
+
+Phase 1: Functional decomposition of a `WAR` into multiple `WAR`s. Use hardcoded service URIs.
+Phase 2: Use service registration and discovery
+Phase 3: Continuous integration
+Phase 4: Continuous deployment
+Phase 5: Proactive monitoring and scale in/out
+Phase 6: Change the implementation stack of a service
