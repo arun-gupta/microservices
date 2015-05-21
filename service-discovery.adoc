@@ -8,9 +8,15 @@ There are multiple tools used for service registry and discovery. This document 
 
 ## ZooKeeper
 
+Curator
+
 ## Consul
 
+consul-registrar, consul-template
+
 ## etcd
+
+https://github.com/jurmous/etcd4j
 
 ## Kubernetes
 
