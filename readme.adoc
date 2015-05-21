@@ -3,3 +3,7 @@
 This workspace will show how to refactor a monolith to a
 microservices-based application.
 
+. link:service-discovery.adoc[Service Discovery]
+. Continuous Integration
+. Continuous Deployment
+. link:service-monitoring.adoc[Service Monitoring]
