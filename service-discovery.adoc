@@ -39,6 +39,8 @@ https://github.com/jurmous/etcd4j
 
 ## Kubernetes
 
+http://fabric8.io/guide/services.html
+
 ## Eureka
 
 ## OSGi
