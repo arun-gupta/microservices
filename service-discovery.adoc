@@ -43,7 +43,8 @@ https://github.com/jurmous/etcd4j
 
 ## Kubernetes
 
-http://fabric8.io/guide/services.html
+. http://fabric8.io/guide/services.html
+. http://paulbakker.io/kubernetes/load-balancing-kubernetes/
 
 ## Eureka
 
