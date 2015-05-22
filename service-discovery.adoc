@@ -30,6 +30,9 @@ consul-registrar, consul-template
 . Written in Go
 . AP from CAP
 
+https://github.com/progrium/docker-consul
+https://github.com/gliderlabs/registrator
+
 ## etcd
 
 https://github.com/jurmous/etcd4j
