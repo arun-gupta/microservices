@@ -40,3 +40,5 @@ https://github.com/jurmous/etcd4j
 ## Kubernetes
 
 ## Eureka
+
+## OSGi
