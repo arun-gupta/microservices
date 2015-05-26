@@ -49,3 +49,13 @@ https://github.com/jurmous/etcd4j
 ## Eureka
 
 ## OSGi
+OSGi has the "Remote Services" specification. This specification defines how OSGi services can be exposed, discovered and used remetotely. 
+All parts of the system, discovery, the topology manager and the communication protocol are plugable, which makes the spec useful
+in many different scenarios.
+The current Reference Implementation is part of Amdatu: http://amdatu.org/components/remote.html, which uses REST as communication protocol and 
+has discovery implementations including etcd, zookeeper, bonjour and slp. A demo video that explains the mechanism can be found here: https://vimeo.com/user17212182/review/111888940/cc9f8853b2.
+
+From a coding perspective, a remote service looks just like a normal Java method call. Of course some symantics are different, but it makes it
+very easy to move an already modular application to a micro services architecture.
+
+Although not part of the spec, it is possible to communicate with non OSGi, and even non Java components.
