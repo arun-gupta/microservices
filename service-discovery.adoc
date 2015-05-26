@@ -59,3 +59,6 @@ From a coding perspective, a remote service looks just like a normal Java method
 very easy to move an already modular application to a micro services architecture.
 
 Although not part of the spec, it is possible to communicate with non OSGi, and even non Java components.
+
+## JBoss Data Grid
+
