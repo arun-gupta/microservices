@@ -40,6 +40,9 @@ https://github.com/jurmous/etcd4j
 . Storing application config (db urls etc.). The app starts, retrieves it's config and configures it's own components.
 . Integration with Vulcan for monitoring purposes.
 . Thinking about using it for master election for running scheduled tasks.
+. Used internally by CoreOS and Fleet.
+. Service Discovery by implementing Sidekick unit which register service information inside etcd that is consumed by HAProxy.
+. etcd used as key/value for sharing p12 and other resources across all services.
 
 ## Kubernetes
 
