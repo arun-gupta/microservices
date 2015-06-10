@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
@@ -15,9 +16,7 @@ import javax.ws.rs.client.WebTarget;
 @ApplicationScoped
 public class ServiceDiscovery {
 
-    final String USER_SERVICE = "http://localhost:8080/user/resources/user";
-    final String CATALOG_SERVICE = "http://localhost:8080/catalog/resources/catalog";
-    final String ORDER_SERVICE = "http://localhost:8080/order/resources/order";
+    @Inject ServiceDiscoveryURI serviceDiscovery;
 
     private WebTarget userService;
     private WebTarget catalogService;
@@ -26,19 +25,19 @@ public class ServiceDiscovery {
     public WebTarget getUserService() {
         if (null == userService) {
             try {
-                userService = ClientBuilder.newClient().target(URI.create(new URL(USER_SERVICE).toExternalForm()));
+                userService = ClientBuilder.newClient().target(URI.create(new URL(serviceDiscovery.getUserServiceURI()).toExternalForm()));
             } catch (MalformedURLException ex) {
                 Logger.getLogger(ServiceDiscovery.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         return userService;
     }
 
     public WebTarget getCatalogService() {
         if (null == catalogService) {
             try {
-                catalogService = ClientBuilder.newClient().target(URI.create(new URL(CATALOG_SERVICE).toExternalForm()));
+                catalogService = ClientBuilder.newClient().target(URI.create(new URL(serviceDiscovery.getCatalogServiceURI()).toExternalForm()));
             } catch (MalformedURLException ex) {
                 Logger.getLogger(ServiceDiscovery.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -49,12 +48,12 @@ public class ServiceDiscovery {
     public WebTarget getOrderService() {
         if (null == orderService) {
             try {
-                orderService = ClientBuilder.newClient().target(URI.create(new URL(ORDER_SERVICE).toExternalForm()));
+                orderService = ClientBuilder.newClient().target(URI.create(new URL(serviceDiscovery.getOrderServiceURI()).toExternalForm()));
             } catch (MalformedURLException ex) {
                 Logger.getLogger(ServiceDiscovery.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         return orderService;
     }
 }
