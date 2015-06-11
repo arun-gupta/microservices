@@ -1,6 +1,5 @@
 package org.javaee7.wildfly.samples.everest;
 
-import javax.enterprise.inject.Alternative;
 import javax.enterprise.inject.Vetoed;
 
 /**
