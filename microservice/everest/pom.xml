@@ -19,6 +19,10 @@
     <dependencies>
         <dependency>
             <groupId>org.javaee7.wildfly.samples</groupId>
+            <artifactId>services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.javaee7.wildfly.samples</groupId>
             <artifactId>contracts</artifactId>
         </dependency>
         <dependency>

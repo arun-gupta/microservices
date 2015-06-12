@@ -3,3 +3,4 @@
 /microservice/order/target/
 /microservice/service-registration/target/
 /microservice/service-discovery/target/
+/microservice/services/target/

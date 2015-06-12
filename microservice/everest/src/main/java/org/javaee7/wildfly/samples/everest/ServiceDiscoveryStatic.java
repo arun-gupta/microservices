@@ -1,11 +1,12 @@
 package org.javaee7.wildfly.samples.everest;
 
 import javax.enterprise.context.ApplicationScoped;
-//import org.javaee7.wildfly.samples.service.discovery.DiscoveryServer;
+import javax.enterprise.inject.Vetoed;
 
 /**
  * @author arungupta
  */
+@Vetoed
 @ApplicationScoped
 public class ServiceDiscoveryStatic implements ServiceDiscoveryURI {
 

@@ -9,12 +9,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>service-registration</module>
         <module>contracts</module>
         <module>catalog</module>
         <module>user</module>
         <module>order</module>
         <module>everest</module>
+        <module>services</module>
     </modules>
 
     <name>Shopping Cart Microservice</name>
@@ -30,7 +30,7 @@
         <dependencies>
             <dependency>
                 <groupId>org.javaee7.wildfly.samples</groupId>
-                <artifactId>service-registration</artifactId>
+                <artifactId>services</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>

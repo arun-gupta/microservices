@@ -1,39 +1,34 @@
 package org.javaee7.wildfly.samples.everest;
 
-import javax.enterprise.inject.Vetoed;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import org.javaee7.wildfly.samples.services.Services;
 
 /**
  * @author arungupta
  */
-@Vetoed
+@ApplicationScoped
 public class ServiceDiscoveryZooKeeper implements ServiceDiscoveryURI {
+
+    Services service;
+
+    @PostConstruct
+    public void init() {
+        service = Services.getInstance("192.168.99.103", 2181);
+    }
 
     @Override
     public String getUserServiceURI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return service.discoverService("user");
     }
 
     @Override
     public String getCatalogServiceURI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return service.discoverService("catalog");
     }
 
     @Override
     public String getOrderServiceURI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return service.discoverService("order");
     }
-    
-
-    // Query Zookeeper for the URI of the serviceName
-//    private URI findServiceURI(String serviceName) {
-//        return URI.create(serviceName);
-//    }
-//    
-//    public void startZookeeperDiscovery() {
-//        DiscoveryServer server = new DiscoveryServer("catalog", URI.create(CATALOG_SERVICE));
-//    }
-//
-//    public void stopZookeeperDiscovery() {
-//
-//    }
 }
