@@ -9,10 +9,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <!--<module>service-discovery</module>-->
+        <module>service-registration</module>
         <module>contracts</module>
-        <module>user</module>
         <module>catalog</module>
+        <module>user</module>
         <module>order</module>
         <module>everest</module>
     </modules>
@@ -23,17 +23,16 @@
         <version.wildfly-swarm>1.0.0.Alpha1</version.wildfly-swarm>
         <version.docker-plugin>0.11.3</version.docker-plugin>
         <version.resteasy>3.0.11.Final</version.resteasy>
-<!--        <version.curator>2.8.0</version.curator>
-        <version.undertow>1.2.6.Final</version.undertow>-->
+        <version.curator>2.8.0</version.curator>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-<!--            <dependency>
+            <dependency>
                 <groupId>org.javaee7.wildfly.samples</groupId>
-                <artifactId>service-discovery</artifactId>
+                <artifactId>service-registration</artifactId>
                 <version>1.0-SNAPSHOT</version>
-            </dependency>-->
+            </dependency>
             <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
@@ -49,43 +48,25 @@
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-client</artifactId>
                 <version>${version.resteasy}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-jaxb-provider</artifactId>
                 <version>${version.resteasy}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-jackson2-provider</artifactId>
-                <version>${version.resteasy}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>wildfly-swarm-jaxrs</artifactId>
-                <version>${version.wildfly-swarm}</version>
                 <scope>provided</scope>
             </dependency>
-<!--            <dependency>
+            <dependency>
                 <groupId>org.apache.curator</groupId>
-                <artifactId>curator-x-discovery</artifactId>
+                <artifactId>curator-framework</artifactId>
                 <version>${version.curator}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.netty</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
-            <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-undertow</artifactId>
-                <version>${version.resteasy}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.undertow</groupId>
-                <artifactId>undertow-core</artifactId>
-                <version>${version.undertow}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.undertow</groupId>
-                <artifactId>undertow-servlet</artifactId>
-                <version>${version.undertow}</version>
-            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
@@ -121,19 +102,6 @@
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>wildfly-swarm-plugin</artifactId>
-                    <version>${version.wildfly-swarm}</version>
-                    <executions>
-                        <execution>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>deploy</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -164,15 +132,6 @@
     </build>
     
     <profiles>
-        <profile>
-            <id>wildfly-swarm</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>wildfly-swarm-jaxrs</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
         <profile>
             <id>docker</id>
             <build>
