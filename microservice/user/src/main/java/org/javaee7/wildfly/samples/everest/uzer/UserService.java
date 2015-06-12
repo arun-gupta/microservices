@@ -14,15 +14,18 @@ import org.javaee7.wildfly.samples.services.ZooKeeperRegistry;
 @Startup
 @Singleton
 public class UserService {
-    @Inject @ZooKeeperRegistry ServiceRegistry service;
+    @Inject @ZooKeeperRegistry ServiceRegistry services;
+    
+    private static final String endpointURI = "http://localhost:8080/user/resources/user";
+    private static final String serviceName = "user";
     
     @PostConstruct
     public void registerService() {
-        service.registerService("user", "http://localhost:8080/user/resources/user");
+        services.registerService(serviceName, endpointURI);
     }
     
     @PreDestroy
-    public void stopService() {
-        service.unregisterService("user", "http://localhost:8080/user/resources/user");
+    public void unregisterService() {
+        services.unregisterService(serviceName, endpointURI);
     }
 }

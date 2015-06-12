@@ -13,9 +13,10 @@ import javax.json.JsonObject;
 import javax.json.JsonWriter;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
-import org.javaee7.wildfly.samples.everest.ServiceDiscovery;
 import org.javaee7.wildfly.samples.everest.cart.Cart;
 import org.javaee7.wildfly.samples.everest.cart.CartItem;
+import org.javaee7.wildfly.samples.services.ZooKeeperRegistry;
+import org.javaee7.wildfly.samples.services.discovery.ServiceDiscoveryZooKeeper;
 
 /**
  * @author arungupta
@@ -33,16 +34,19 @@ public class OrderBean implements Serializable {
     String status;
 
     @Inject
-    ServiceDiscovery services;
+    @ZooKeeperRegistry
+    ServiceDiscoveryZooKeeper services;
 
     public void saveOrder() {
         List<CartItem> cartItems = cart.getItems();
-        for (CartItem cartItem : cartItems) {
+        cartItems.stream().map((cartItem) -> {
             OrderItem orderItem = new OrderItem();
             orderItem.itemId = cartItem.getItemId();
             orderItem.itemCount = cartItem.getItemCount();
+            return orderItem;
+        }).forEach((orderItem) -> {
             order.getOrderItems().add(orderItem);
-        }
+        });
 
         try {
             JsonArray orderItems = null;
@@ -54,7 +58,7 @@ public class OrderBean implements Serializable {
                         .build();
             }
             JsonObject jsonObject = Json.createObjectBuilder()
-//                    .add("orderId", order.getOrderId())
+                    //                    .add("orderId", order.getOrderId())
                     .add("orderItems", orderItems)
                     .build();
             StringWriter writer = new StringWriter();

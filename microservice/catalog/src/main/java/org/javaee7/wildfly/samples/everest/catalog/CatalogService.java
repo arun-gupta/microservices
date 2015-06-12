@@ -16,13 +16,16 @@ import org.javaee7.wildfly.samples.services.ZooKeeperRegistry;
 public class CatalogService {
     @Inject @ZooKeeperRegistry ServiceRegistry services;
     
+    private static final String endpointURI = "http://localhost:8080/catalog/resources/catalog";
+    private static final String serviceName = "catalog";
+    
     @PostConstruct
     public void registerService() {
-        services.registerService("catalog", "http://localhost:8080/catalog/resources/catalog");
+        services.registerService(serviceName, endpointURI);
     }
     
     @PreDestroy
     public void unregisterService() {
-        services.unregisterService("catalog", "http://localhost:8080/catalog/resources/catalog");
+        services.unregisterService(serviceName, endpointURI);
     }
 }

@@ -1,6 +1,7 @@
 package org.javaee7.wildfly.samples.services.zookeeper;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.apache.curator.framework.CuratorFramework;
@@ -18,63 +19,64 @@ import org.javaee7.wildfly.samples.services.ZooKeeperRegistry;
 @ApplicationScoped
 public class ZooKeeper implements ServiceRegistry {
 
-    private String host;
-    private int port;
+    private final CuratorFramework curatorFramework;
+    private final ConcurrentHashMap<String, String> uriToZnodePath;
     
     @Inject
     public ZooKeeper() {
-        host = "192.168.99.103";
-        port = 2181;
+        String host = "192.168.99.103";
+        int port = 2181;
+        curatorFramework = CuratorFrameworkFactory
+                .newClient(host + ":" + port, new RetryNTimes(5, 1000));
+        curatorFramework.start();
+        uriToZnodePath = new ConcurrentHashMap<>();
     }
 
     @Override
     public void registerService(String name, String uri) {
         try {
-            CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(host + ":" + port, new RetryNTimes(5, 1000));
-            curatorFramework.start();
             String znode = "/services/" + name;
             
             if (curatorFramework.checkExists().forPath(znode) == null) {
                 curatorFramework.create().creatingParentsIfNeeded().forPath(znode);
             }
             
-            curatorFramework.create().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath(znode+"/_", uri.getBytes());
+            String znodePath = curatorFramework
+                    .create()
+                    .withMode(CreateMode.EPHEMERAL_SEQUENTIAL)
+                    .forPath(znode+"/_", uri.getBytes());
             
-            // store the returned path in a map, this can be used to delete the node during unregister
+            uriToZnodePath.put(uri, znodePath);
         } catch (Exception ex) {
-            throw new RuntimeException(ex);
+            throw new RuntimeException("Could not register service \"" 
+                    + name 
+                    + "\", with URI \"" + uri + "\": " + ex.getLocalizedMessage());
         }
     }
     
     @Override
     public void unregisterService(String name, String uri) {
-//        try {
-//            CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(zkHost + ":" + zkPort, new RetryNTimes(5, 1000));
-//            curatorFramework.start();
-//            String znode = "/services/" + name;
-//            
-//            if (curatorFramework.checkExists().forPath(znode) == null) {
-//                curatorFramework.create().creatingParentsIfNeeded().forPath(znode);
-//            }
-//            
-//            curatorFramework.create().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath(znode, uri.getBytes());
-//        } catch (Exception ex) {
-//            throw new RuntimeException(ex);
-//        }
+        try {
+            if (uriToZnodePath.contains(uri)) {
+                System.out.println("\n\nFound path: " + uriToZnodePath.get(uri) + "\n\n");
+                curatorFramework.delete().forPath(uriToZnodePath.get(uri));
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException("Could not unregister service \"" 
+                    + name 
+                    + "\", with URI \"" + uri + "\": " + ex.getLocalizedMessage());
+        }
     }
 
     @Override
     public String discoverService(String name) {
         try {
-            CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(host + ":" + port, new RetryNTimes(5, 1000));
-            curatorFramework.start();
             String znode = "/services/" + name;
 
             List<String> uris = curatorFramework.getChildren().forPath(znode);
-            String child =  uris.get(0);                        
-            return new String(curatorFramework.getData().forPath(ZKPaths.makePath(znode, child)));
+            return new String(curatorFramework.getData().forPath(ZKPaths.makePath(znode, uris.get(0))));
         } catch (Exception ex) {
-            throw new RuntimeException(ex);
+            throw new RuntimeException("Service \"" + name + "\" not found");
         }
     }
 }
