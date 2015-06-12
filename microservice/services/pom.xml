@@ -8,7 +8,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>zookeeper</artifactId>
+    <artifactId>services</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
@@ -16,5 +16,5 @@
             <artifactId>curator-framework</artifactId>
         </dependency>
     </dependencies>
-    <name>zookeeper</name>
+    <name>services</name>
 </project>

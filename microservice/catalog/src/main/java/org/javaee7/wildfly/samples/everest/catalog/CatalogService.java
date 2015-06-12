@@ -4,7 +4,9 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import org.javaee7.wildfly.samples.zookeeper.ZooKeeper;
+import javax.inject.Inject;
+import org.javaee7.wildfly.samples.services.ServiceRegistry;
+import org.javaee7.wildfly.samples.services.ZooKeeperRegistry;
 
 /**
  * @author arungupta
@@ -12,16 +14,15 @@ import org.javaee7.wildfly.samples.zookeeper.ZooKeeper;
 @Startup
 @Singleton
 public class CatalogService {
-    ZooKeeper zk;
+    @Inject @ZooKeeperRegistry ServiceRegistry services;
     
     @PostConstruct
     public void registerService() {
-        zk = ZooKeeper.getInstance("192.168.99.103", 2181);
-        zk.registerService("catalog", "http://localhost:8080/catalog/resources/catalog");
+        services.registerService("catalog", "http://localhost:8080/catalog/resources/catalog");
     }
     
     @PreDestroy
     public void unregisterService() {
-        zk.unregisterService("catalog", "http://localhost:8080/catalog/resources/catalog");
+        services.unregisterService("catalog", "http://localhost:8080/catalog/resources/catalog");
     }
 }

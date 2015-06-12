@@ -1,8 +1,9 @@
 package org.javaee7.wildfly.samples.everest;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import org.javaee7.wildfly.samples.zookeeper.ZooKeeper;
+import javax.inject.Inject;
+import org.javaee7.wildfly.samples.services.ServiceRegistry;
+import org.javaee7.wildfly.samples.services.ZooKeeperRegistry;
 
 /**
  * @author arungupta
@@ -10,25 +11,20 @@ import org.javaee7.wildfly.samples.zookeeper.ZooKeeper;
 @ApplicationScoped
 public class ServiceDiscoveryZooKeeper implements ServiceDiscoveryURI {
 
-    ZooKeeper zk;
-
-    @PostConstruct
-    public void init() {
-        zk = ZooKeeper.getInstance("192.168.99.103", 2181);
-    }
+    @Inject @ZooKeeperRegistry ServiceRegistry services;
 
     @Override
     public String getUserServiceURI() {
-        return zk.discoverService("user");
+        return services.discoverService("user");
     }
 
     @Override
     public String getCatalogServiceURI() {
-        return zk.discoverService("catalog");
+        return services.discoverService("catalog");
     }
 
     @Override
     public String getOrderServiceURI() {
-        return zk.discoverService("order");
+        return services.discoverService("order");
     }
 }

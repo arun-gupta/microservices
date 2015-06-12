@@ -1,30 +1,33 @@
-package org.javaee7.wildfly.samples.zookeeper;
+package org.javaee7.wildfly.samples.services.zookeeper;
 
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryNTimes;
 import org.apache.curator.utils.ZKPaths;
 import org.apache.zookeeper.CreateMode;
+import org.javaee7.wildfly.samples.services.ServiceRegistry;
+import org.javaee7.wildfly.samples.services.ZooKeeperRegistry;
 
 /**
  * @author arungupta
  */
-public class ZooKeeper {
+@ZooKeeperRegistry
+@ApplicationScoped
+public class ZooKeeper implements ServiceRegistry {
 
-    private static ZooKeeper INSTANCE;
-    private static String host;
-    private static int port;
-
-    public static final ZooKeeper getInstance(String host, int port) {
-        if (null == INSTANCE) {
-            INSTANCE = new ZooKeeper();
-            ZooKeeper.host = host;
-            ZooKeeper.port = port;
-        }
-        return INSTANCE;
+    private String host;
+    private int port;
+    
+    @Inject
+    public ZooKeeper() {
+        host = "192.168.99.103";
+        port = 2181;
     }
 
+    @Override
     public void registerService(String name, String uri) {
         try {
             CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(host + ":" + port, new RetryNTimes(5, 1000));
@@ -43,6 +46,7 @@ public class ZooKeeper {
         }
     }
     
+    @Override
     public void unregisterService(String name, String uri) {
 //        try {
 //            CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(zkHost + ":" + zkPort, new RetryNTimes(5, 1000));
@@ -59,6 +63,7 @@ public class ZooKeeper {
 //        }
     }
 
+    @Override
     public String discoverService(String name) {
         try {
             CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(host + ":" + port, new RetryNTimes(5, 1000));
