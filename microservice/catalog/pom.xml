@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>org.javaee7.wildfly.samples</groupId>
-            <artifactId>services</artifactId>
+            <artifactId>zookeeper</artifactId>
         </dependency>
     </dependencies>
     

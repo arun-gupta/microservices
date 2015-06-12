@@ -1,4 +1,4 @@
-package org.javaee7.wildfly.samples.services;
+package org.javaee7.wildfly.samples.zookeeper;
 
 import java.util.List;
 import org.apache.curator.framework.CuratorFramework;
@@ -10,24 +10,24 @@ import org.apache.zookeeper.CreateMode;
 /**
  * @author arungupta
  */
-public class Services {
+public class ZooKeeper {
 
-    private static Services INSTANCE;
-    private static String zkHost;
-    private static int zkPort;
+    private static ZooKeeper INSTANCE;
+    private static String host;
+    private static int port;
 
-    public static final Services getInstance(String zkHost, int zkPort) {
+    public static final ZooKeeper getInstance(String host, int port) {
         if (null == INSTANCE) {
-            INSTANCE = new Services();
-            Services.zkHost = zkHost;
-            Services.zkPort = zkPort;
+            INSTANCE = new ZooKeeper();
+            ZooKeeper.host = host;
+            ZooKeeper.port = port;
         }
         return INSTANCE;
     }
 
     public void registerService(String name, String uri) {
         try {
-            CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(zkHost + ":" + zkPort, new RetryNTimes(5, 1000));
+            CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(host + ":" + port, new RetryNTimes(5, 1000));
             curatorFramework.start();
             String znode = "/services/" + name;
             
@@ -61,7 +61,7 @@ public class Services {
 
     public String discoverService(String name) {
         try {
-            CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(zkHost + ":" + zkPort, new RetryNTimes(5, 1000));
+            CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(host + ":" + port, new RetryNTimes(5, 1000));
             curatorFramework.start();
             String znode = "/services/" + name;
             
