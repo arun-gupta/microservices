@@ -1,7 +1,6 @@
 package org.javaee7.wildfly.samples.everest.order;
 
 import java.io.StringReader;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.json.Json;
