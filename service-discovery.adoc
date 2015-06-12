@@ -65,3 +65,36 @@ Although not part of the spec, it is possible to communicate with non OSGi, and 
 
 ## JBoss Data Grid
 
+## Snoop
+
+Snoop is an experimental registration and discovery service for Java EE based microservices.
+Check out https://github.com/ivargrimstad/snoop for more information.
+
+== Service Registration
+
+To register a service with snoop, all you need to do is annotate a class in the service with @EnableSnoopClient.
+
+Example:
+
+ @EnableSnoopClient
+ @ApplicationPath("api")
+ public class ApplicationConfig extends Application {
+    ...
+ }
+
+== Service Discovery
+
+To discover a service, use the @Snoop qualifier to inject a client to the registered service.
+
+Example:
+
+ @Inject
+ @Snoop(applicationName = "snoophello")
+ private SnoopDiscoveryClient helloService;
+ ...
+    String helloResponse = helloService.simpleGet("hello")
+              .filter(r -> r.getStatus() == 200)
+              .map(r -> r.readEntity(String.class))
+              .orElse("goodbye");
+ ---
+
