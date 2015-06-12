@@ -69,25 +69,10 @@ public class ZooKeeper implements ServiceRegistry {
             CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(host + ":" + port, new RetryNTimes(5, 1000));
             curatorFramework.start();
             String znode = "/services/" + name;
-            
-            // Level 1: simplest thing to do
+
             List<String> uris = curatorFramework.getChildren().forPath(znode);
             String child =  uris.get(0);                        
             return new String(curatorFramework.getData().forPath(ZKPaths.makePath(znode, child)));
-            
-//        // Level 2: register watches to check the status of the service
-//        uris = curatorFramework.getChildren().usingWatcher(new Watcher() {
-//            @Override
-//            public void process(WatchedEvent we) {
-//                if (we.getType() == Event.EventType.NodeDeleted) {}
-//            }
-//        }).forPath(znode);
-//        
-//        // Level 3: Done during initialization
-//        PathChildrenCache pcache = new PathChildrenCache(curatorFramework, znode, true);
-//        pcache.start();
-//
-//        List<ChildData> childdata = pcache.getCurrentData();
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
