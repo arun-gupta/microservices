@@ -1,7 +1,11 @@
 package org.javaee7.wildfly.samples.services.zookeeper;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.apache.curator.framework.CuratorFramework;
@@ -24,12 +28,19 @@ public class ZooKeeper implements ServiceRegistry {
     
     @Inject
     public ZooKeeper() {
-        String host = "192.168.99.103";
-        int port = 2181;
-        curatorFramework = CuratorFrameworkFactory
-                .newClient(host + ":" + port, new RetryNTimes(5, 1000));
-        curatorFramework.start();
-        uriToZnodePath = new ConcurrentHashMap<>();
+        try {
+            Properties props = new Properties();
+            props.load(this.getClass().getResourceAsStream("/zookeeper.properties"));
+            
+            curatorFramework = CuratorFrameworkFactory
+                    .newClient(props.getProperty("host") 
+                            + ":" 
+                            + props.getProperty("port"), new RetryNTimes(5, 1000));
+            curatorFramework.start();
+            uriToZnodePath = new ConcurrentHashMap<>();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex.getLocalizedMessage());
+        }
     }
 
     @Override
