@@ -10,11 +10,16 @@
 
     <artifactId>services</artifactId>
     <packaging>jar</packaging>
+    <name>services</name>
+    
     <dependencies>
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
         </dependency>
     </dependencies>
-    <name>services</name>
+    
+    <build>
+        <finalName>services</finalName>
+    </build>
 </project>
