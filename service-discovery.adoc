@@ -70,9 +70,16 @@ Although not part of the spec, it is possible to communicate with non OSGi, and 
 Snoop is an experimental registration and discovery service for Java EE based microservices.
 Check out https://github.com/ivargrimstad/snoop for more information.
 
-== Service Registration
+. Start the Snoop Service
 
-To register a service with snoop, all you need to do is annotate a class in the service with @EnableSnoopClient.
+ docker run -it -p 8081:8080 ivargrimstad/snoop-service
+
+. To enable logging (optional)
+
+ docker exec $1 /opt/jboss/wildfly/bin/jboss-cli.sh –connect “/subsystem=logging/console-handler=CONSOLE:change-log-level(level="CONFIG”)“
+ docker exec $1 /opt/jboss/wildfly/bin/jboss-cli.sh –connect ”/subsystem=logging/logger=eu.agilejava.snoop:add(level=CONFIG)
+
+. To register a service with snoop, all you need to do is annotate a class in the service with @EnableSnoopClient.
 
 Example:
 
@@ -82,9 +89,7 @@ Example:
     ...
  }
 
-== Service Discovery
-
-To discover a service, use the @Snoop qualifier to inject a client to the registered service.
+. To discover a service, use the @Snoop qualifier to inject a client to the registered service.
 
 Example:
 
