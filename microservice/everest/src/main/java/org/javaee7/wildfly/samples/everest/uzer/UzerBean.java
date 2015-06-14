@@ -11,6 +11,7 @@ import javax.json.JsonObject;
 import javax.json.JsonWriter;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
+import org.javaee7.wildfly.samples.services.SnoopRegistry;
 import org.javaee7.wildfly.samples.services.ZooKeeperRegistry;
 import org.javaee7.wildfly.samples.services.discovery.ServiceDiscovery;
 
@@ -22,7 +23,8 @@ import org.javaee7.wildfly.samples.services.discovery.ServiceDiscovery;
 public class UzerBean implements Serializable {
     @Inject UzerItem uzerItem;
     
-    @Inject @ZooKeeperRegistry ServiceDiscovery services;
+//    @Inject @ZooKeeperRegistry ServiceDiscovery services;
+    @Inject @SnoopRegistry ServiceDiscovery services;
     
     String status;
     
