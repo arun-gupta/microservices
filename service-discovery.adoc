@@ -79,6 +79,8 @@ Check out https://github.com/ivargrimstad/snoop for more information.
  docker exec $1 /opt/jboss/wildfly/bin/jboss-cli.sh –connect “/subsystem=logging/console-handler=CONSOLE:change-log-level(level="CONFIG”)“
  docker exec $1 /opt/jboss/wildfly/bin/jboss-cli.sh –connect ”/subsystem=logging/logger=eu.agilejava.snoop:add(level=CONFIG)
 
+where $1 is the container id for the snoop-service
+
 . To register a service with snoop, all you need to do is annotate a class in the service with @EnableSnoopClient.
 
 Example:
