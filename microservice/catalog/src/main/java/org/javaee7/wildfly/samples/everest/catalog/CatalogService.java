@@ -6,6 +6,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
 import org.javaee7.wildfly.samples.services.ServiceRegistry;
+import org.javaee7.wildfly.samples.services.SnoopRegistry;
 import org.javaee7.wildfly.samples.services.ZooKeeperRegistry;
 
 /**
@@ -14,7 +15,8 @@ import org.javaee7.wildfly.samples.services.ZooKeeperRegistry;
 @Startup
 @Singleton
 public class CatalogService {
-    @Inject @ZooKeeperRegistry ServiceRegistry services;
+//    @Inject @ZooKeeperRegistry ServiceRegistry services;
+    @Inject @SnoopRegistry ServiceRegistry services;
     
     private static final String endpointURI = "http://localhost:8080/catalog/resources/catalog";
     private static final String serviceName = "catalog";

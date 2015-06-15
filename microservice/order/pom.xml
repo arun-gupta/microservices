@@ -21,6 +21,10 @@
             <groupId>org.javaee7.wildfly.samples</groupId>
             <artifactId>services</artifactId>
         </dependency>
+        <dependency>
+            <groupId>eu.agilejava</groupId>
+            <artifactId>snoop</artifactId>
+        </dependency>     
     </dependencies>
     
     <build>
