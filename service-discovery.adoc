@@ -6,21 +6,16 @@ _Service registration_ allows each microservice to register itself with a _regis
 
 There are multiple tools used for service registry and discovery. This document will highlight how to use them from a Java application.
 
-## ZooKeeper
-
-Curator
+## ZooKeeper and Curator
 
 . Start ZooKeeper container
 +
 [source, text]
 ----
-docker run -it -p 2181:2181 jplock/zookeeper
+docker run -d -p 2181:2181 fabric8/zookeeper
 ----
-+
-.
 
-. Written in Java
-. CP from CAP
+Complete details: http://blog.arungupta.me/zookeeper-microservice-registration-discovery/
 
 
 ## Consul
