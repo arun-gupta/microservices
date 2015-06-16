@@ -1,23 +1,24 @@
-package org.javaee7.wildfly.samples.services.discovery;
+package org.javaee7.wildfly.samples.services.fixed;
 
 import java.net.URI;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import org.javaee7.wildfly.samples.services.FixedRegistry;
-import org.javaee7.wildfly.samples.services.ServiceRegistry;
-import org.javaee7.wildfly.samples.services.ZooKeeperRegistry;
+import org.javaee7.wildfly.samples.services.discovery.ServiceDiscovery;
+import org.javaee7.wildfly.samples.services.FixedServices;
+import org.javaee7.wildfly.samples.services.registration.ServiceRegistry;
+import org.javaee7.wildfly.samples.services.ZooKeeperServices;
 
 /**
  * @author arungupta
  */
-@FixedRegistry
+@FixedServices
 @ApplicationScoped
-public class ServiceDiscoveryFixed implements ServiceDiscovery {
+public class FixedServiceDiscovery implements ServiceDiscovery {
 
     @Inject
-    @ZooKeeperRegistry
+    @ZooKeeperServices
     ServiceRegistry services;
 
     private WebTarget userService;

@@ -1,4 +1,4 @@
-package org.javaee7.wildfly.samples.services;
+package org.javaee7.wildfly.samples.services.registration;
 
 /**
  * @author arungupta

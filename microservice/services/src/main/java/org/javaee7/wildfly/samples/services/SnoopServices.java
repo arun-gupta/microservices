@@ -10,10 +10,11 @@ import java.lang.annotation.Target;
 import javax.inject.Qualifier;
 
 /**
- * @author arungupta
+ * 
+ * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @Qualifier
 @Retention(RUNTIME)
 @Target({METHOD, FIELD, PARAMETER, TYPE})
-public @interface ZooKeeperRegistry {
+public @interface SnoopServices {
 }

@@ -1,4 +1,4 @@
-package org.javaee7.wildfly.samples.services.snoop;
+    package org.javaee7.wildfly.samples.services.snoop;
 
 import eu.agilejava.snoop.annotation.Snoop;
 import eu.agilejava.snoop.client.SnoopDiscoveryClient;
@@ -10,14 +10,14 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.client.WebTarget;
-import org.javaee7.wildfly.samples.services.ServiceRegistry;
-import org.javaee7.wildfly.samples.services.SnoopRegistry;
+import org.javaee7.wildfly.samples.services.registration.ServiceRegistry;
+import org.javaee7.wildfly.samples.services.SnoopServices;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@SnoopRegistry
+@SnoopServices
 @ApplicationScoped
 public class SnoopServiceRegistry implements ServiceRegistry {
 

@@ -1,23 +1,24 @@
-package org.javaee7.wildfly.samples.services.discovery;
+package org.javaee7.wildfly.samples.services.snoop;
 
 import java.net.URI;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import org.javaee7.wildfly.samples.services.ServiceRegistry;
-import org.javaee7.wildfly.samples.services.SnoopRegistry;
+import org.javaee7.wildfly.samples.services.discovery.ServiceDiscovery;
+import org.javaee7.wildfly.samples.services.registration.ServiceRegistry;
+import org.javaee7.wildfly.samples.services.SnoopServices;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@SnoopRegistry
+@SnoopServices
 @ApplicationScoped
-public class ServiceDiscoverySnoop implements ServiceDiscovery {
+public class SnoopServiceDiscovery implements ServiceDiscovery {
 
    @Inject
-   @SnoopRegistry
+   @SnoopServices
    private ServiceRegistry services;
 
    private WebTarget userService;

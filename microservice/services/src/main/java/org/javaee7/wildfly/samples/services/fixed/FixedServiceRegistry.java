@@ -3,20 +3,20 @@ package org.javaee7.wildfly.samples.services.fixed;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import org.javaee7.wildfly.samples.services.FixedRegistry;
-import org.javaee7.wildfly.samples.services.ServiceRegistry;
+import org.javaee7.wildfly.samples.services.FixedServices;
+import org.javaee7.wildfly.samples.services.registration.ServiceRegistry;
 
 /**
  * @author arungupta
  */
-@FixedRegistry
+@FixedServices
 @ApplicationScoped
-public class Fixed implements ServiceRegistry {
+public class FixedServiceRegistry implements ServiceRegistry {
     
     ConcurrentHashMap<String, String> serviceNameToURI = new ConcurrentHashMap<>();
 
     @Inject
-    public Fixed() {
+    public FixedServiceRegistry() {
         serviceNameToURI.put("user", null);
     }
 
