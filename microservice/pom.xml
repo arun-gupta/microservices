@@ -147,17 +147,17 @@
                     <plugin>
                         <groupId>org.jolokia</groupId>
                         <artifactId>docker-maven-plugin</artifactId>
-                        <version>0.11.5-M1</version>
+                        <version>0.11.5</version>
                         <configuration>
                             <images>
                                 <image>
                                     <alias>user</alias>
                                     <name>arungupta/shoppingcart-user</name>
                                     <build>
-                                        <from>arungupta/wildfly:8.2</from>
+                                        <from>jboss/wildfly</from>
                                         <assembly>
                                             <descriptor>assembly.xml</descriptor>
-                                            <basedir>/</basedir>
+                                            <basedir>user</basedir>
                                         </assembly>
                                         <ports>
                                             <port>8080</port>
@@ -170,15 +170,66 @@
                                         </ports>
                                     </run>
                                 </image>
-                                <!--                                <image>
+                                <image>
                                     <alias>catalog</alias>
+                                    <name>arungupta/shoppingcart-catalog</name>
+                                    <build>
+                                        <from>jboss/wildfly</from>
+                                        <assembly>
+                                            <descriptor>assembly.xml</descriptor>
+                                            <basedir>catalog</basedir>
+                                        </assembly>
+                                        <ports>
+                                            <port>8080</port>
+                                        </ports>
+                                    </build>
+
+                                    <run>
+                                        <ports>
+                                            <port>user.port:8080</port>
+                                        </ports>
+                                    </run>
                                 </image>
                                 <image>
                                     <alias>order</alias>
+                                    <name>arungupta/shoppingcart-order</name>
+                                    <build>
+                                        <from>jboss/wildfly</from>
+                                        <assembly>
+                                            <descriptor>assembly.xml</descriptor>
+                                            <basedir>order</basedir>
+                                        </assembly>
+                                        <ports>
+                                            <port>8080</port>
+                                        </ports>
+                                    </build>
+
+                                    <run>
+                                        <ports>
+                                            <port>user.port:8080</port>
+                                        </ports>
+                                    </run>
                                 </image>
                                 <image>
                                     <alias>everest-web</alias>
-                                </image>-->
+                                    <name>arungupta/shoppingcart-web</name>
+                                    <build>
+                                        <from>jboss/wildfly</from>
+                                        <assembly>
+                                            <descriptor>assembly.xml</descriptor>
+                                            <basedir>everest-web</basedir>
+                                        </assembly>
+                                        <ports>
+                                            <port>8080</port>
+                                        </ports>
+                                    </build>
+
+                                    <run>
+                                        <ports>
+                                            <port>user.port:8080</port>
+                                        </ports>
+                                    </run>
+                                </image>
                             </images>
                         </configuration>
                         
@@ -206,14 +257,14 @@
 
     <repositories>
         <repository>
-           <id>snoop</id>
-           <url>http://nexus.agilejava.eu/nexus/content/groups/public</url>
-           <releases>
-              <enabled>true></enabled>
-           </releases>
-           <snapshots>
-              <enabled>true</enabled>
-           </snapshots>
+            <id>snoop</id>
+            <url>http://nexus.agilejava.eu/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true></enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
