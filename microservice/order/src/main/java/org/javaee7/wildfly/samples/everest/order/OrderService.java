@@ -5,8 +5,8 @@ import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import org.javaee7.wildfly.samples.services.FixedServices;
 import org.javaee7.wildfly.samples.services.registration.ServiceRegistry;
-import org.javaee7.wildfly.samples.services.ZooKeeperServices;
 
 /**
  * @author arungupta
@@ -14,9 +14,9 @@ import org.javaee7.wildfly.samples.services.ZooKeeperServices;
 @Startup
 @Singleton
 public class OrderService {
-    @Inject @ZooKeeperServices ServiceRegistry services;
-//    @Inject @SnoopRegistry ServiceRegistry services;
-//    @Inject @FixedRegistry ServiceRegistry services;
+//    @Inject @ZooKeeperServices ServiceRegistry services;
+//    @Inject @SnoopServices ServiceRegistry services;
+    @Inject @FixedServices ServiceRegistry services;
     
     private static final String endpointURI = "http://localhost:8080/order/resources/order";
     private static final String serviceName = "order";

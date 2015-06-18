@@ -15,8 +15,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 import org.javaee7.wildfly.samples.everest.cart.Cart;
 import org.javaee7.wildfly.samples.everest.cart.CartItem;
-import org.javaee7.wildfly.samples.services.ZooKeeperServices;
-import org.javaee7.wildfly.samples.services.zookeeper.ZooKeeperServiceDiscovery;
+import org.javaee7.wildfly.samples.services.FixedServices;
+import org.javaee7.wildfly.samples.services.discovery.ServiceDiscovery;
 
 /**
  * @author arungupta
@@ -33,9 +33,9 @@ public class OrderBean implements Serializable {
 
     String status;
 
-    @Inject @ZooKeeperServices ZooKeeperServiceDiscovery services;
-//    @Inject @SnoopRegistry ServiceDiscovery services;
-//    @Inject @FixedRegistry ServiceDiscovery services;
+//    @Inject @ZooKeeperServices ZooKeeperServiceDiscovery services;
+//    @Inject @SnoopServices ServiceDiscovery services;
+    @Inject @FixedServices ServiceDiscovery services;
 
     public void saveOrder() {
         List<CartItem> cartItems = cart.getItems();

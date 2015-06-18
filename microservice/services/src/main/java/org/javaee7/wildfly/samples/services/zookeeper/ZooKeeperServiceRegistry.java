@@ -77,7 +77,7 @@ public class ZooKeeperServiceRegistry implements ServiceRegistry {
     }
 
     @Override
-    public String discoverService(String name) {
+    public String discoverServiceURI(String name) {
         try {
             String znode = "/services/" + name;
 

@@ -1,12 +1,11 @@
 package org.javaee7.wildfly.samples.everest.order;
 
-import eu.agilejava.snoop.annotation.EnableSnoopClient;
 import javax.ws.rs.core.Application;
 
 /**
  * @author arungupta
  */
-@EnableSnoopClient
+//@EnableSnoopClient
 @javax.ws.rs.ApplicationPath("resources")
 public class ApplicationConfig extends Application {
 }

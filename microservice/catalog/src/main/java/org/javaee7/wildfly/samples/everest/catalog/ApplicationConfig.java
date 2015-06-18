@@ -6,7 +6,7 @@ import javax.ws.rs.core.Application;
 /**
  * @author arungupta
  */
-@EnableSnoopClient
+//@EnableSnoopClient
 @javax.ws.rs.ApplicationPath("resources")
 public class ApplicationConfig extends Application {
 }

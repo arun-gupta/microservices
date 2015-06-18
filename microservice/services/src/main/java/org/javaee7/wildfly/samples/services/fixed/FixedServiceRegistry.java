@@ -1,6 +1,7 @@
 package org.javaee7.wildfly.samples.services.fixed;
 
 import java.util.concurrent.ConcurrentHashMap;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.javaee7.wildfly.samples.services.FixedServices;
@@ -17,16 +18,18 @@ public class FixedServiceRegistry implements ServiceRegistry {
 
     @Inject
     public FixedServiceRegistry() {
-        serviceNameToURI.put("user", null);
+    }
+    
+    @PostConstruct
+    public void init() {
+        serviceNameToURI.put("catalog", "http://localhost:8080/catalog/resources/catalog");
+        serviceNameToURI.put("user", "http://localhost:8080/user/resources/user");
+        serviceNameToURI.put("order", "http://localhost:8080/order/resources/order");
     }
 
     @Override
     public void registerService(String name, String uri) {
         // Workaround until https://github.com/arun-gupta/microservices/issues/31 is fixed
-        
-        serviceNameToURI.put("catalog", "http://localhost:8080/catalog/resources/catalog");
-        serviceNameToURI.put("user", "http://localhost:8080/user/resources/user");
-        serviceNameToURI.put("order", "http://localhost:8080/order/resources/order");
     }
 
     @Override
@@ -37,8 +40,8 @@ public class FixedServiceRegistry implements ServiceRegistry {
     }
 
     @Override
-    public String discoverService(String name) {
-        if (serviceNameToURI.values().contains(name)) {
+    public String discoverServiceURI(String name) {
+        if (serviceNameToURI.keySet().contains(name)) {
             return serviceNameToURI.get(name);
         }
         

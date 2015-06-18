@@ -48,7 +48,7 @@ public class SnoopServiceRegistry implements ServiceRegistry {
    }
 
    @Override
-   public String discoverService(String name) {
+   public String discoverServiceURI(String name) {
       final String endpoint = Optional.ofNullable(services.get(name))
               .orElseThrow(RuntimeException::new)
               .getUri()
