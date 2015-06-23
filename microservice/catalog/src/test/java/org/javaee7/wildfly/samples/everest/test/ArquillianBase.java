@@ -1,6 +1,5 @@
 package org.javaee7.wildfly.samples.everest.test;
 
-
 import org.javaee7.wildfly.samples.everest.exception.InitializationException;
 import org.javaee7.wildfly.samples.everest.utils.WildflyUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -12,6 +11,10 @@ import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.runner.RunWith;
 
+/**
+ * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
+ *         Created: 6/19/15
+ */
 @RunWith(Arquillian.class)
 public abstract class ArquillianBase {
     @Deployment

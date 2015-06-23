@@ -26,7 +26,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @author WalmartLabs
  * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
  *         Created: 6/21/15
  */

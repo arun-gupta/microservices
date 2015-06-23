@@ -17,7 +17,6 @@
 package org.javaee7.wildfly.samples.everest.exception;
 
 /**
- * @author WalmartLabs
  * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
  *         Created: 6/19/15
  */

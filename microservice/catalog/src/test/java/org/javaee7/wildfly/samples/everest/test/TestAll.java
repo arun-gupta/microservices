@@ -21,7 +21,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 /**
- * @author WalmartLabs
  * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
  *         Created: 6/19/15
  */

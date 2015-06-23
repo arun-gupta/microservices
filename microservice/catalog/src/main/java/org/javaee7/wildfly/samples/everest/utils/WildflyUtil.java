@@ -29,7 +29,6 @@ import javax.management.ObjectName;
 import java.lang.management.ManagementFactory;
 
 /**
- * @author WalmartLabs
  * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
  *         Created: 6/19/15
  */
