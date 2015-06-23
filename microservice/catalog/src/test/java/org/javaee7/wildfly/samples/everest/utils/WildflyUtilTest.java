@@ -14,20 +14,33 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.javaee7.wildfly.samples.everest.test;
+package org.javaee7.wildfly.samples.everest.utils;
 
+import org.javaee7.wildfly.samples.everest.test.ArquillianBase;
 import org.junit.Test;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
  * @author WalmartLabs
  * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
- *         Created: 6/19/15
+ *         Created: 6/21/15
  */
-public class LoaderTest extends ArquillianBase {
+public class WildflyUtilTest extends ArquillianBase {
+    @EJB
+    private WildflyUtil util;
+
     @Test
-    public void testLoad() {
-        assertTrue("Application Failed to load", true);
+    public void testHostAndPort() {
+        String host = util.getHostName();
+        int port = util.getPort();
+        int securePort = util.getSecurePort();
+        assertNotNull("Host is null", host);
+        assertTrue("port is 0", port != 0);
+        assertTrue("secure port is 0", securePort != 0);
     }
 }
