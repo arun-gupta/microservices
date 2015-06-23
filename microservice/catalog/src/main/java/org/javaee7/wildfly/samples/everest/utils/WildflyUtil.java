@@ -52,7 +52,7 @@ public class WildflyUtil {
             log.debug("--> " + hostName + " : " + port + "/" + securePort);
         } catch (Exception e) {
             e.printStackTrace();
-            //throw new InitializationException(e);
+            throw new InitializationException(e);
         }
 
     }
