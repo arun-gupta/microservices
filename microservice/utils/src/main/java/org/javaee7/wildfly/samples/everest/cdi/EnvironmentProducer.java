@@ -14,32 +14,39 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.javaee7.wildfly.samples.everest.utils;
+package org.javaee7.wildfly.samples.everest.cdi;
 
-import org.javaee7.wildfly.samples.everest.test.ArquillianBase;
-import org.junit.Test;
+import org.javaee7.wildfly.samples.everest.qualifiers.QSecureServerPort;
+import org.javaee7.wildfly.samples.everest.qualifiers.QServerName;
+import org.javaee7.wildfly.samples.everest.qualifiers.QServerPort;
+import org.javaee7.wildfly.samples.everest.utils.WildflyUtil;
 
-import javax.ejb.EJB;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
-
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
- *         Created: 6/21/15
+ *         Created: 6/23/15
  */
-public class WildflyUtilTest extends ArquillianBase {
-    @EJB
-    private WildflyUtil util;
+public class EnvironmentProducer {
+    @Inject
+    private WildflyUtil wildflyUtil;
 
-    @Test
-    public void testHostAndPort() {
-        String host = util.getHostName();
-        int port = util.getPort();
-        int securePort = util.getSecurePort();
-        assertNotNull("Host is null", host);
-        assertTrue("port is 0", port != 0);
-        assertTrue("secure port is 0", securePort != 0);
+    @Produces
+    @QServerName
+    public String getServerName() {
+        return wildflyUtil.getHostName();
+    }
+
+    @Produces
+    @QServerPort
+    public int getServerPort() {
+        return wildflyUtil.getPort();
+    }
+
+    @Produces
+    @QSecureServerPort
+    public int getSecurePort() {
+        return wildflyUtil.getSecurePort();
     }
 }
