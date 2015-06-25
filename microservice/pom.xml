@@ -73,7 +73,7 @@
             <dependency>
                 <groupId>eu.agilejava</groupId>
                 <artifactId>snoop</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>1.0.0</version>
             </dependency>  
         </dependencies>
     </dependencyManagement>
@@ -254,18 +254,5 @@
             </build>
         </profile>
     </profiles>
-
-    <repositories>
-        <repository>
-            <id>snoop</id>
-            <url>http://nexus.agilejava.eu/nexus/content/groups/public</url>
-            <releases>
-                <enabled>true></enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
 </project>
