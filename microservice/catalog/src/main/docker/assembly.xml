@@ -7,7 +7,6 @@
             <includes>
                 <include>org.javaee7.wildfly.samples:catalog</include>
             </includes>
-            <outputDirectory>/opt/jboss/wildfly/standalone/deployments/</outputDirectory>
             <outputFileNameMapping>catalog.war</outputFileNameMapping>
         </dependencySet>
     </dependencySets>
