@@ -5,9 +5,9 @@
     <dependencySets>
         <dependencySet>
             <includes>
-                <include>org.javaee7.wildfly.samples:order</include>
+                <include>org.javaee7.wildfly.samples:everest-web</include>
             </includes>
-            <outputFileNameMapping>order.war</outputFileNameMapping>
+            <outputFileNameMapping>everest.war</outputFileNameMapping>
         </dependencySet>
     </dependencySets>
 </assembly>

@@ -37,6 +37,36 @@
                     <skip>false</skip>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.jolokia</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${version.docker-plugin}</version>
+                <configuration>
+                    <images>
+                        <image>
+                            <alias>catalog</alias>
+                            <name>arungupta/shoppingcart-catalog</name>
+                            <build>
+                                <from>jboss/wildfly</from>
+                                <assembly>
+                                    <descriptor>assembly.xml</descriptor>
+                                    <basedir>/opt/jboss/wildfly/standalone/deployments</basedir>
+                                    <user>jboss:jboss:jboss</user>
+                                </assembly>
+                                <ports>
+                                    <port>8080</port>
+                                </ports>
+                            </build>
+                            <run>
+                                <ports>
+                                    <port>catalog.port:8080</port>
+                                </ports>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
