@@ -21,7 +21,7 @@
     
     <properties>
         <version.wildfly-swarm>1.0.0.Alpha1</version.wildfly-swarm>
-        <version.docker-plugin>0.11.3</version.docker-plugin>
+        <version.docker-plugin>0.12.1-SNAPSHOT</version.docker-plugin>
         <version.resteasy>3.0.11.Final</version.resteasy>
         <version.curator>2.8.0</version.curator>        
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -110,6 +110,12 @@
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                     </configuration>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.jolokia</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${version.docker-plugin}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -147,92 +153,7 @@
                     <plugin>
                         <groupId>org.jolokia</groupId>
                         <artifactId>docker-maven-plugin</artifactId>
-                        <version>0.11.5</version>
-                        <configuration>
-                            <images>
-                                <image>
-                                    <alias>user</alias>
-                                    <name>arungupta/shoppingcart-user</name>
-                                    <build>
-                                        <from>jboss/wildfly</from>
-                                        <assembly>
-                                            <descriptor>assembly.xml</descriptor>
-                                            <basedir>user</basedir>
-                                        </assembly>
-                                        <ports>
-                                            <port>8080</port>
-                                        </ports>
-                                    </build>
-                                    
-                                    <run>
-                                        <ports>
-                                            <port>user.port:8080</port>
-                                        </ports>
-                                    </run>
-                                </image>
-                                <image>
-                                    <alias>catalog</alias>
-                                    <name>arungupta/shoppingcart-catalog</name>
-                                    <build>
-                                        <from>jboss/wildfly</from>
-                                        <assembly>
-                                            <descriptor>assembly.xml</descriptor>
-                                            <basedir>catalog</basedir>
-                                        </assembly>
-                                        <ports>
-                                            <port>8080</port>
-                                        </ports>
-                                    </build>
-
-                                    <run>
-                                        <ports>
-                                            <port>user.port:8080</port>
-                                        </ports>
-                                    </run>
-                                </image>
-                                <image>
-                                    <alias>order</alias>
-                                    <name>arungupta/shoppingcart-order</name>
-                                    <build>
-                                        <from>jboss/wildfly</from>
-                                        <assembly>
-                                            <descriptor>assembly.xml</descriptor>
-                                            <basedir>order</basedir>
-                                        </assembly>
-                                        <ports>
-                                            <port>8080</port>
-                                        </ports>
-                                    </build>
-
-                                    <run>
-                                        <ports>
-                                            <port>user.port:8080</port>
-                                        </ports>
-                                    </run>
-                                </image>
-                                <image>
-                                    <alias>everest-web</alias>
-                                    <name>arungupta/shoppingcart-web</name>
-                                    <build>
-                                        <from>jboss/wildfly</from>
-                                        <assembly>
-                                            <descriptor>assembly.xml</descriptor>
-                                            <basedir>everest-web</basedir>
-                                        </assembly>
-                                        <ports>
-                                            <port>8080</port>
-                                        </ports>
-                                    </build>
-
-                                    <run>
-                                        <ports>
-                                            <port>user.port:8080</port>
-                                        </ports>
-                                    </run>
-                                </image>
-                            </images>
-                        </configuration>
-                        
+                        <version>${version.docker-plugin}</version>
                         <executions>
                             <execution>
                                 <id>docker:build</id>

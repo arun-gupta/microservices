@@ -7,7 +7,6 @@
             <includes>
                 <include>org.javaee7.wildfly.samples:user</include>
             </includes>
-            <outputDirectory>/opt/jboss/wildfly/standalone/deployments/</outputDirectory>
             <outputFileNameMapping>user.war</outputFileNameMapping>
         </dependencySet>
     </dependencySets>
