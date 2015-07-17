@@ -1,4 +1,4 @@
-    package org.javaee7.wildfly.samples.services.snoop;
+package org.javaee7.wildfly.samples.services.snoop;
 
 import eu.agilejava.snoop.annotation.Snoop;
 import eu.agilejava.snoop.client.SnoopDiscoveryClient;
@@ -14,7 +14,6 @@ import org.javaee7.wildfly.samples.services.registration.ServiceRegistry;
 import org.javaee7.wildfly.samples.services.SnoopServices;
 
 /**
- *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @SnoopServices
