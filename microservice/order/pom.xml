@@ -39,9 +39,8 @@
             </plugin>
 
             <plugin>
-               <groupId>org.jolokia</groupId>
+                <groupId>org.jolokia</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>${version.docker-plugin}</version>
                 <configuration>
                     <images>
                         <image>
