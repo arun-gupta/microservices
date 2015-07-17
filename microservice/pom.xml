@@ -17,6 +17,7 @@
         <version.wildfly-swarm>1.0.0.Alpha1</version.wildfly-swarm>
         <version.docker-plugin>0.13.1</version.docker-plugin>
         <version.resteasy>3.0.11.Final</version.resteasy>
+        <version.snoop>1.0.0</version.snoop>
         <version.curator>2.8.0</version.curator>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -61,7 +62,7 @@
             <dependency>
                 <groupId>eu.agilejava</groupId>
                 <artifactId>snoop</artifactId>
-                <version>1.0.0</version>
+                <version>${version.snoop}</version>
             </dependency>
 
             <dependency>
@@ -279,7 +280,6 @@
                     <plugin>
                         <groupId>org.jolokia</groupId>
                         <artifactId>docker-maven-plugin</artifactId>
-                        <version>${version.docker-plugin}</version>
                         <executions>
                             <execution>
                                 <id>docker:build</id>
