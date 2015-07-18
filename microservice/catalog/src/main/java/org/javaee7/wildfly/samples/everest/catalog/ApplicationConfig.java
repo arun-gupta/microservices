@@ -1,6 +1,5 @@
 package org.javaee7.wildfly.samples.everest.catalog;
 
-import eu.agilejava.snoop.annotation.EnableSnoopClient;
 import javax.ws.rs.core.Application;
 
 /**

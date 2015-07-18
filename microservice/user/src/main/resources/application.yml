@@ -2,6 +2,4 @@ snoop:
    applicationName: user
    applicationHome: http://localhost:8080/user/resources
    applicationServiceRoot: user
-   serviceHost: 192.168.59.103:8081/snoop-service/
-
-  
+   serviceHost: 192.168.99.103:8081/snoop-service/

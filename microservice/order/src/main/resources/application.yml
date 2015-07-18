@@ -2,6 +2,5 @@ snoop:
    applicationName: order
    applicationHome: http://localhost:8080/order/resources
    applicationServiceRoot: order
-   serviceHost: 192.168.59.103:8081/snoop-service/
-
+   serviceHost: 192.168.99.103:8081/snoop-service/
   

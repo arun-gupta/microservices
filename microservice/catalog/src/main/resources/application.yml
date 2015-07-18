@@ -2,6 +2,6 @@ snoop:
    applicationName: catalog
    applicationHome: http://localhost:8080/catalog/resources
    applicationServiceRoot: catalog
-   serviceHost: 192.168.59.103:8081/snoop-service/
+   serviceHost: 192.168.99.103:8081/snoop-service/
 
   
