@@ -10,7 +10,6 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
-import org.javaee7.wildfly.samples.services.FixedServices;
 import org.javaee7.wildfly.samples.services.discovery.ServiceDiscovery;
 
 /**
@@ -21,9 +20,7 @@ import org.javaee7.wildfly.samples.services.discovery.ServiceDiscovery;
 public class CatalogBean implements Serializable {
     @Inject CatalogItem catalogItem;
     
-//    @Inject @ZooKeeperServices ServiceDiscovery services;
-//    @Inject @SnoopServices ServiceDiscovery services;
-    @Inject @FixedServices ServiceDiscovery services;
+    @Inject ServiceDiscovery services;
 
     String status;
     
