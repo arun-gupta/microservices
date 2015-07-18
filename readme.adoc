@@ -11,6 +11,23 @@ phases:
 . Phase 5: Proactive monitoring and scale in/out
 . Phase 6: Change the implementation stack of a service
 
+## Run the application
+
+. Start ZooKeeper
+
+  docker run -d -p 2181:2181 fabric8/zookeeper
+
+. Download and unzip http://download.jboss.org/wildfly/9.0.0.Final/wildfly-9.0.0.Final.zip[WildFly 9.0.0.Final]
+. Run WildFly
+
+  ./bin/standalone.sh
+
+. Deploy the application
+
+  mvn -f microservice/pom.xml install -DskipTests
+
+## NoOps
+
 Operational concerns are addressed in the following documents:
 
 . link:service-discovery.adoc[Service Discovery]
