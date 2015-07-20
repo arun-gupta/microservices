@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.client.WebTarget;
 import org.javaee7.wildfly.samples.services.registration.ServiceRegistry;
 import org.javaee7.wildfly.samples.services.SnoopServices;
 
@@ -34,7 +33,7 @@ public class SnoopServiceRegistry implements ServiceRegistry {
    @Snoop(applicationName = "order")
    private SnoopDiscoveryClient orderService;
 
-   private final Map<String, WebTarget> services = new HashMap<>();
+   private final Map<String, SnoopDiscoveryClient> services = new HashMap<>();
 
    @Override
    public void registerService(String name, String uri) {
@@ -48,7 +47,7 @@ public class SnoopServiceRegistry implements ServiceRegistry {
 
    @Override
    public String discoverServiceURI(String name) {
-      final String endpoint = Optional.ofNullable(services.get(name))
+      final String endpoint = Optional.ofNullable(services.get(name).getServiceRoot())
               .orElseThrow(RuntimeException::new)
               .getUri()
               .toString();
@@ -59,8 +58,8 @@ public class SnoopServiceRegistry implements ServiceRegistry {
 
    @PostConstruct
    public void init() {
-      services.put("user", userService.getServiceRoot());
-      services.put("catalog", catalogService.getServiceRoot());
-      services.put("order", orderService.getServiceRoot());
+      services.put("user", userService);
+      services.put("catalog", catalogService);
+      services.put("order", orderService);
    }
 }
