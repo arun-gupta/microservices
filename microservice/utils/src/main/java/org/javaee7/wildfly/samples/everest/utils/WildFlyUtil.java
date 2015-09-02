@@ -33,21 +33,26 @@ import java.lang.management.ManagementFactory;
  */
 @Startup
 @Singleton
-public class WildflyUtil {
-    private static final Logger log = LoggerFactory.getLogger(WildflyUtil.class);
-    private String hostName = "localhost";
-    private int port = 8080;
-    private int securePort = 8443;
+public class WildFlyUtil {
+    private static final Logger log = LoggerFactory.getLogger(WildFlyUtil.class);
+    private static String hostName = "localhost";
+    private static int hostPort = 8080;
+    private static int hostSecurePort = 8443;
 
     @PostConstruct
     void init() throws InitializationException {
         try {
-            MBeanServer server = ManagementFactory.getPlatformMBeanServer();
+            MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
+
+            ObjectName http = new ObjectName("jboss.as:socket-binding-group=standard-sockets,socket-binding=http");
+            hostName = (String) mBeanServer.getAttribute(http,"boundAddress");
+            hostPort = (Integer) mBeanServer.getAttribute(http,"boundPort");
+
             ObjectName ws = new ObjectName("jboss.ws", "service", "ServerConfig");
-            hostName = (String) server.getAttribute(ws, "WebServiceHost");
-            port = (int) server.getAttribute(ws, "WebServicePort");
-            securePort = (int) server.getAttribute(ws, "WebServiceSecurePort");
-            log.debug("--> " + hostName + " : " + port + "/" + securePort);
+//            hostName = (String) mBeanServer.getAttribute(ws, "WebServiceHost");
+//            hostPort = (int) mBeanServer.getAttribute(ws, "WebServicePort");
+            hostSecurePort = (int) mBeanServer.getAttribute(ws, "WebServiceSecurePort");
+            log.info("--> " + hostName + " : " + hostPort + "/" + hostSecurePort);
         } catch (Exception e) {
             e.printStackTrace();
             throw new InitializationException(e);
@@ -55,15 +60,15 @@ public class WildflyUtil {
 
     }
 
-    public String getHostName() throws InitializationException {
+    public static String getHostName() {
         return hostName;
     }
 
-    public int getPort() throws InitializationException {
-        return port;
+    public static int getHostPort() {
+        return hostPort;
     }
 
-    public int getSecurePort() throws InitializationException {
-        return securePort;
+    public static int getSecurePort() {
+        return hostSecurePort;
     }
 }

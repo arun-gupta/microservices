@@ -19,7 +19,7 @@ package org.javaee7.wildfly.samples.everest.utils.cdi;
 import org.javaee7.wildfly.samples.everest.utils.qualifiers.QSecureServerPort;
 import org.javaee7.wildfly.samples.everest.utils.qualifiers.QServerName;
 import org.javaee7.wildfly.samples.everest.utils.qualifiers.QServerPort;
-import org.javaee7.wildfly.samples.everest.utils.WildflyUtil;
+import org.javaee7.wildfly.samples.everest.utils.WildFlyUtil;
 
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -30,7 +30,7 @@ import javax.inject.Inject;
  */
 public class EnvironmentProducer {
     @Inject
-    private WildflyUtil wildflyUtil;
+    private WildFlyUtil wildflyUtil;
 
     @Produces
     @QServerName
@@ -41,7 +41,7 @@ public class EnvironmentProducer {
     @Produces
     @QServerPort
     public int getServerPort() {
-        return wildflyUtil.getPort();
+        return wildflyUtil.getHostPort();
     }
 
     @Produces
