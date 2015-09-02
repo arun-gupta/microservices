@@ -16,7 +16,7 @@ dist/
 build/
 dbdist/
 nbactions.xml
-nb-configuration.xml
+**/nb-configuration.xml
 
 #Apple Paths
 .DS_Store
