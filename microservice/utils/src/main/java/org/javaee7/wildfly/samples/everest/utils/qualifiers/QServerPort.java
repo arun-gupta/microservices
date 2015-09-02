@@ -14,7 +14,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.javaee7.wildfly.samples.everest.qualifiers;
+package org.javaee7.wildfly.samples.everest.utils.qualifiers;
 
 import javax.inject.Qualifier;
 import java.lang.annotation.ElementType;
@@ -29,5 +29,5 @@ import java.lang.annotation.Target;
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})
-public @interface QSecureServerPort {
+public @interface QServerPort {
 }

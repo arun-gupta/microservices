@@ -16,9 +16,9 @@
  */
 package org.javaee7.wildfly.samples.everest.utils;
 
-import org.javaee7.wildfly.samples.everest.qualifiers.QSecureServerPort;
-import org.javaee7.wildfly.samples.everest.qualifiers.QServerName;
-import org.javaee7.wildfly.samples.everest.qualifiers.QServerPort;
+import org.javaee7.wildfly.samples.everest.utils.qualifiers.QSecureServerPort;
+import org.javaee7.wildfly.samples.everest.utils.qualifiers.QServerName;
+import org.javaee7.wildfly.samples.everest.utils.qualifiers.QServerPort;
 import org.javaee7.wildfly.samples.everest.test.ArquillianBase;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -48,7 +48,7 @@ public class WildflyUtilTest extends ArquillianBase {
     @QSecureServerPort
     private int securePort;
 
-    @Test
+//    @Test
     public void testHostAndPort() {
         assertNotNull("Host is null", serverName);
         assertTrue("port is 0", port != 0);

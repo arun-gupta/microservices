@@ -14,11 +14,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.javaee7.wildfly.samples.everest.cdi;
+package org.javaee7.wildfly.samples.everest.utils.cdi;
 
-import org.javaee7.wildfly.samples.everest.qualifiers.QSecureServerPort;
-import org.javaee7.wildfly.samples.everest.qualifiers.QServerName;
-import org.javaee7.wildfly.samples.everest.qualifiers.QServerPort;
+import org.javaee7.wildfly.samples.everest.utils.qualifiers.QSecureServerPort;
+import org.javaee7.wildfly.samples.everest.utils.qualifiers.QServerName;
+import org.javaee7.wildfly.samples.everest.utils.qualifiers.QServerPort;
 import org.javaee7.wildfly.samples.everest.utils.WildflyUtil;
 
 import javax.enterprise.inject.Produces;

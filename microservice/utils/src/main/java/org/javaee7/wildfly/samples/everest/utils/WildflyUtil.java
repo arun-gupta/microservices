@@ -16,7 +16,7 @@
  */
 package org.javaee7.wildfly.samples.everest.utils;
 
-import org.javaee7.wildfly.samples.everest.exception.InitializationException;
+import org.javaee7.wildfly.samples.everest.utils.exception.InitializationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
