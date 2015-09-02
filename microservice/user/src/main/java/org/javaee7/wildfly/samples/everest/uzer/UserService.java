@@ -5,6 +5,7 @@ import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import org.javaee7.wildfly.samples.everest.utils.WildFlyUtil;
 import org.javaee7.wildfly.samples.services.ZooKeeperServices;
 import org.javaee7.wildfly.samples.services.registration.ServiceRegistry;
 
@@ -18,7 +19,10 @@ public class UserService {
 //    @Inject @SnoopServices ServiceRegistry services;
     @Inject @ZooKeeperServices ServiceRegistry services;
 
-    private static final String endpointURI = "http://localhost:8080/user/resources/user";
+//    private static final String endpointURI = "http://localhost:8080/user/resources/user";
+//    private final String endpointURI = "http://" + serverName + ":" + serverPort + "/user/resources/user";
+    private final String endpointURI = "http://" + WildFlyUtil.getHostName()+ ":" + WildFlyUtil.getHostPort() + "/user/resources/user";
+
     private static final String serviceName = "user";
     
     @PostConstruct
