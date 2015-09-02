@@ -48,7 +48,7 @@ public class WildflyUtilTest extends ArquillianBase {
     @QSecureServerPort
     private int securePort;
 
-//    @Test
+    @Test
     public void testHostAndPort() {
         assertNotNull("Host is null", serverName);
         assertTrue("port is 0", port != 0);
