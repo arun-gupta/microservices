@@ -1,6 +1,58 @@
-# Service Monitoring
+= Service Monitoring
 
-## New Relic
+== New Relic
 
-Service Map?
+=== Download and Configure Agent
 
+. Sign up for a new account: https://newrelic.com/signup
+. Login and select '`Get Started`'.
+. From '`Choose your language`', select '`Java`'.
+. Download the zip file and unzip.
+
+Complete details:
+https://docs.newrelic.com/docs/agents/java-agent/installation/java-agent-self-installer
+
+=== Setup WildFly
+
+. WildFly installation for Java (standalone mode):
+  https://docs.newrelic.com/docs/agents/java-agent/frameworks/wildfly-installation-java
+. Automatic application mapping:
+  https://docs.newrelic.com/docs/agents/java-agent/configuration/automatic-application-naming
+.. Set `enable_auto_app_naming` to `true` in `newrelic.yml`. This will
+   ensure that multiple microservices deployed in the same instance of WildFly will be monitored in their own namespace.
+
+=== Deploy the Application
+
+. Clone the workspace: `git clone https://github.com/arun-gupta/microservices.git`
+. Start WildFly application server: `./bin/standalone.sh`
+. Change the directory to `microservice` and deploy as `mvn install -Pwildfly`
+. Access the application at http://localhost:8080/everest-web
+. Go through the application flow and shop around
+
+=== Show Stats
+
+. Access http://rpm.newrelic.com, select Applications to see the
+  output
++
+image::images/newrelic-applications.png[]
++
+. Select an application, say "`everest-web`"
+. Click on "`Transactions`", "`/Faces Servlet`":
++
+image::images/newrelic-everest-web-faces-servlet.png[]
++
+. Scroll down and select on "`Breakdown table`" and show the %
+  distribution
++
+image::images/newrelic-everest-web-breakdown-table.png[]
++
+. Click on the first row (as that is most time consuming resource).
+  This is also the external microservice that is being invoked.
++
+image::images/newrelic-catalog-item-rest.png[]
+
+[NOTE]
+----
+. The data shown in the dashboard is slightly delayed as its a
+  snapshot every minute. There is no way to change this setting.
+----
