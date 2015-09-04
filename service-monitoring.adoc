@@ -5,21 +5,24 @@
 === Download and Configure Agent
 
 . Sign up for a new account: https://newrelic.com/signup
-. Login and select '`Get Started`'.
-. From '`Choose your language`', select '`Java`'.
-. Download the zip file and unzip.
+. Login and select '`Get Started`'
+. From '`Choose your language`', select '`Java`'
+. Download the Java Agent zip file and unzip
+. Configure the license in `newrelic.yml`
+. Set `enable_auto_app_naming` to `true` in `newrelic.yml`. This will
+  ensure that multiple microservices deployed in same instance of
+  application server will be monitored in their own namespace. More
+  details at: https://docs.newrelic.com/docs/agents/java-agent/configuration/automatic-application-naming
 
 Complete details:
 https://docs.newrelic.com/docs/agents/java-agent/installation/java-agent-self-installer
 
 === Setup WildFly
 
+. Download WildFly from
+  http://download.jboss.org/wildfly/9.0.1.Final/wildfly-9.0.1.Final.zip.
 . WildFly installation for Java (standalone mode):
   https://docs.newrelic.com/docs/agents/java-agent/frameworks/wildfly-installation-java
-. Automatic application mapping:
-  https://docs.newrelic.com/docs/agents/java-agent/configuration/automatic-application-naming
-.. Set `enable_auto_app_naming` to `true` in `newrelic.yml`. This will
-   ensure that multiple microservices deployed in the same instance of WildFly will be monitored in their own namespace.
 
 === Deploy the Application
 
