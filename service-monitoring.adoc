@@ -36,8 +36,11 @@ https://docs.newrelic.com/docs/agents/java-agent/installation/java-agent-self-in
 +
 image::images/newrelic-applications.png[]
 +
+WARNING: The data shown in the dashboard is updated after a few seconds as it is collected every minute. There is no way to change this setting for now.
++
 . Select an application, say "`everest-web`"
-. Click on "`Transactions`", "`/Faces Servlet`":
+. Click on "`Transactions`", "`/Faces Servlet`" to see more details
+  about the application:
 +
 image::images/newrelic-everest-web-faces-servlet.png[]
 +
@@ -50,9 +53,14 @@ image::images/newrelic-everest-web-breakdown-table.png[]
   This is also the external microservice that is being invoked.
 +
 image::images/newrelic-catalog-item-rest.png[]
++
+. Click on "`Service Maps`" at the top to show how different services
+  are interacting with each other:
++
+image::images/newrelic-service-map.png[]
++
+WARNING: This service map is a snapshot of how different microservices
+are interacting at the current moment. It does not provide historical data at this
+time.
 
-[NOTE]
-----
-. The data shown in the dashboard is slightly delayed as its a
-  snapshot every minute. There is no way to change this setting.
-----
+TODO: How to show the SQL query?
