@@ -66,4 +66,12 @@ WARNING: This service map is a snapshot of how different microservices
 are interacting at the current moment. It does not provide historical data at this
 time.
 
-TODO: How to show the SQL query?
+TODO:
+. How to show the SQL query?
+. Response times
+. Errors and timeouts
+. Request flow
+. System resources  (CPU, network, disk)
+. JVM pressure (threads GC, mem)
+. Apdex score
+
