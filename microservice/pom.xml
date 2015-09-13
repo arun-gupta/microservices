@@ -236,6 +236,21 @@
                                 <goals>
                                     <goal>build</goal>
                                 </goals>
+                                <configuration>
+                                    <images>
+                                        <image>
+                                            <build combine.self="append">
+                                                <cmd>
+                                                    <exec>
+                                                        <args>/opt/jboss/wildfly/bin/standalone.sh</args>
+                                                        <args>-b</args>
+                                                        <args>127.0.0.1</args>
+                                                    </exec>
+                                                </cmd>
+                                            </build>
+                                        </image>
+                                    </images>
+                                </configuration>
                             </execution>
                             <execution>
                                 <id>docker:start</id>
