@@ -25,6 +25,23 @@ phases:
 . Deploy the application
 
   mvn -f microservice/pom.xml install -DskipTests
+  
+## Run the application with KumuluzEE
+
+. Start ZooKeeper
+
+  docker run -d -p 2181:2181 fabric8/zookeeper
+  
+. Build the microservices (each microservice will be its own standalone service with all the required dependencies packaged in)
+
+  mvn clean package
+  
+. Run each microservice separately. This is to show that each microservice is indeed its own independed service. Make sure to adjust the ports of the microservices so that they don't collide (use the PORT environment variable).
+
+  $ java -cp catalog/target/classes:catalog/target/dependency/* com.kumuluz.ee.EeApplication
+  $ PORT=8081 java -cp order/target/classes:order/target/dependency/* com.kumuluz.ee.EeApplication
+  $ PORT=8082 java -cp user/target/classes:user/target/dependency/* com.kumuluz.ee.EeApplication
+  $ PORT=8083 java -cp everest/target/classes:everest/target/dependency/* com.kumuluz.ee.EeApplication
 
 ## NoOps
 
