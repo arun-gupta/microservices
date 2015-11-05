@@ -11,7 +11,7 @@ import org.javaee7.wildfly.samples.services.SnoopServices;
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @SnoopServices
-@ApplicationScoped
+//@ApplicationScoped
 public class SnoopServiceDiscovery extends ServiceDiscovery {
 
    @Inject

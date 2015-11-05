@@ -3,6 +3,8 @@ package org.javaee7.wildfly.samples.everest.catalog;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -19,11 +21,15 @@ import javax.ws.rs.core.UriInfo;
 /**
  * @author arungupta
  */
-@Stateless
 @Path("catalog")
+@RequestScoped
 public class CatalogItemREST {
-    @PersistenceContext
+
+    @PersistenceContext(unitName = "catalogPU")
     private EntityManager em;
+
+    @Inject
+    private CatalogService cs;
     
     @Context UriInfo uriInfo;
     
@@ -31,6 +37,7 @@ public class CatalogItemREST {
     public void init() {
         System.out.println("base URI: " + uriInfo.getBaseUri());
         System.out.println("request URI: " + uriInfo.getRequestUri());
+        //cs.doNothing();
     }
 
     @POST

@@ -9,39 +9,55 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>org.javaee7.wildfly.samples</groupId>
     <artifactId>order</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
 
     <name>order</name>
 
     <dependencies>
         <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-servlet-jetty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-jpa-eclipselink</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-cdi-weld</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-jax-rs-jersey</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-json-p</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.javaee7.wildfly.samples</groupId>
             <artifactId>services</artifactId>
         </dependency>
-        <dependency>
-            <groupId>eu.agilejava</groupId>
-            <artifactId>snoop</artifactId>
-        </dependency>     
-        <dependency>
-            <groupId>org.javaee7.wildfly.samples</groupId>
-            <artifactId>utils</artifactId>
-        </dependency>
     </dependencies>
-    
+
     <build>
         <finalName>order</finalName>
         <plugins>
             <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <configuration>
-                    <skip>false</skip>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
             </plugin>
-
             <plugin>
                 <groupId>org.jolokia</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
@@ -51,11 +67,9 @@
                             <alias>order</alias>
                             <name>arungupta/shoppingcart-order</name>
                             <build>
-                                <from>jboss/wildfly</from>
+                                <from>java:8</from>
                                 <assembly>
                                     <descriptor>assembly.xml</descriptor>
-                                    <basedir>/opt/jboss/wildfly/standalone/deployments</basedir>
-                                    <user>jboss:jboss:jboss</user>
                                 </assembly>
                                 <ports>
                                     <port>8080</port>
@@ -63,14 +77,13 @@
                             </build>
                             <run>
                                 <ports>
-                                    <port>order.port:8080</port>
+                                    <port>order.port:8081</port>
                                 </ports>
                             </run>
                         </image>
                     </images>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 </project>

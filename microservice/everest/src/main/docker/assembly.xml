@@ -1,13 +1,10 @@
 <assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
-    <id>order</id>
-    <dependencySets>
-        <dependencySet>
-            <includes>
-                <include>org.javaee7.wildfly.samples:everest-web</include>
-            </includes>
-            <outputFileNameMapping>everest.war</outputFileNameMapping>
-        </dependencySet>
-    </dependencySets>
+    <id>everest-web</id>
+    <fileSets>
+        <fileSet>
+            <includes />
+        </fileSet>
+    </fileSets>
 </assembly>

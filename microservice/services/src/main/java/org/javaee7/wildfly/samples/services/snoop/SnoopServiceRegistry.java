@@ -16,7 +16,7 @@ import org.javaee7.wildfly.samples.services.SnoopServices;
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @SnoopServices
-@ApplicationScoped
+//@ApplicationScoped
 public class SnoopServiceRegistry implements ServiceRegistry {
 
    private static final Logger LOGGER = Logger.getLogger(SnoopServiceRegistry.class.getName());
