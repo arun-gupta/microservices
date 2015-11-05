@@ -25,6 +25,17 @@
         <msa.docker.host>192.168.99.100</msa.docker.host>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>oss-sonatype-snapshots</id>
+            <name>oss-sonatype-snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
