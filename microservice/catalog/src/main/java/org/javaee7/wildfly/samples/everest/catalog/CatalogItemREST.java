@@ -27,9 +27,6 @@ public class CatalogItemREST {
 
     @PersistenceContext(unitName = "catalogPU")
     private EntityManager em;
-
-    @Inject
-    private CatalogService cs;
     
     @Context UriInfo uriInfo;
     
@@ -37,7 +34,6 @@ public class CatalogItemREST {
     public void init() {
         System.out.println("base URI: " + uriInfo.getBaseUri());
         System.out.println("request URI: " + uriInfo.getRequestUri());
-        //cs.doNothing();
     }
 
     @POST

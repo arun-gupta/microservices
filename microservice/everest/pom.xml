@@ -80,7 +80,7 @@
                             </build>
                             <run>
                                 <ports>
-                                    <port>everest-web.port:8080</port>
+                                    <port>everest-web.port:8083</port>
                                 </ports>
                             </run>
                         </image>
