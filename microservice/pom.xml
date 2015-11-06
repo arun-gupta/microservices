@@ -57,6 +57,11 @@
             </dependency>
             <dependency>
                 <groupId>com.kumuluz.ee</groupId>
+                <artifactId>kumuluzee-el</artifactId>
+                <version>${version.kumuluzee}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kumuluz.ee</groupId>
                 <artifactId>kumuluzee-jsp</artifactId>
                 <version>${version.kumuluzee}</version>
             </dependency>

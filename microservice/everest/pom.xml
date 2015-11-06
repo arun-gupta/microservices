@@ -29,6 +29,10 @@
         </dependency>
         <dependency>
             <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-el</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-jsf-mojarra</artifactId>
         </dependency>
         <dependency>
