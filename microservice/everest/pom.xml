@@ -9,14 +9,45 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>org.javaee7.wildfly.samples</groupId>
     <artifactId>everest-web</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
 
     <name>everest-web</name>
 
     <dependencies>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-servlet-jetty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-jsp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-el</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-jsf-mojarra</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-cdi-weld</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-jax-rs-jersey</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-json-p</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.javaee7.wildfly.samples</groupId>
             <artifactId>services</artifactId>
@@ -25,27 +56,15 @@
             <groupId>org.javaee7.wildfly.samples</groupId>
             <artifactId>contracts</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxb-provider</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
         <finalName>everest-web</finalName>
         <plugins>
             <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <configuration>
-                    <skip>false</skip>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
             </plugin>
-
             <plugin>
                 <groupId>org.jolokia</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
@@ -53,13 +72,11 @@
                     <images>
                         <image>
                             <alias>everest-web</alias>
-                            <name>arungupta/shoppingcart-web</name>
+                            <name>arungupta/shoppingcart-everest-web</name>
                             <build>
-                                <from>jboss/wildfly</from>
+                                <from>java:8</from>
                                 <assembly>
                                     <descriptor>assembly.xml</descriptor>
-                                    <basedir>/opt/jboss/wildfly/standalone/deployments</basedir>
-                                    <user>jboss:jboss:jboss</user>
                                 </assembly>
                                 <ports>
                                     <port>8080</port>
@@ -67,7 +84,7 @@
                             </build>
                             <run>
                                 <ports>
-                                    <port>web.port:8080</port>
+                                    <port>everest-web.port:8083</port>
                                 </ports>
                             </run>
                         </image>
@@ -76,4 +93,26 @@
             </plugin>
         </plugins>
     </build>
+    
+    <profiles>
+        <profile>
+            <id>kumuluzee</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
