@@ -1,6 +1,7 @@
 package org.javaee7.wildfly.samples.everest.uzer;
 
 import org.javaee7.wildfly.samples.services.ZooKeeperServices;
+import org.javaee7.wildfly.samples.services.eager.Eager;
 import org.javaee7.wildfly.samples.services.registration.ServiceRegistry;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import javax.inject.Inject;
 /**
  * @author arungupta
  */
+@Eager
 @ApplicationScoped
 public class UserService {
 //        @Inject @FixedServices ServiceRegistry services;
