@@ -34,6 +34,4 @@ public class CatalogService {
     public void unregisterService() {
         services.unregisterService(serviceName, endpointURI);
     }
-
-    public void doNothing() {}
 }
