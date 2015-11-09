@@ -186,13 +186,21 @@
                     <artifactId>docker-maven-plugin</artifactId>
                     <version>0.13.3</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.2.1</version>
+                    <configuration>
+                        <mainClass>com.kumuluz.ee.EeApplication</mainClass>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
     <profiles>
         <profile>
-            <id>docker</id>
+            <id>kumuluzee-docker</id>
             <build>
                 <plugins>
                     <plugin>

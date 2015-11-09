@@ -26,8 +26,4 @@
             <artifactId>slf4j-simple</artifactId>
         </dependency>
     </dependencies>
-        
-    <build>
-        <finalName>services</finalName>
-    </build>
 </project>
