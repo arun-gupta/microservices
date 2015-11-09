@@ -42,6 +42,10 @@ phases:
   $ PORT=8081 java -cp order/target/classes:order/target/dependency/* com.kumuluz.ee.EeApplication
   $ PORT=8082 java -cp user/target/classes:user/target/dependency/* com.kumuluz.ee.EeApplication
   $ PORT=8083 java -cp everest/target/classes:everest/target/dependency/* com.kumuluz.ee.EeApplication
+  
+. Alternatively you can start the microservices using maven by running the following command inside a specific microservice folder: (Starting them all together with maven is a bit difficult as the microservices are normall apps that run in the foreground and wait, which means that maven will stop on the first one)
+
+  $ mvn exec:java
 
 ## NoOps
 
