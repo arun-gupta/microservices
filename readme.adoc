@@ -34,7 +34,7 @@ phases:
   
 . Build the microservices (each microservice will be its own standalone service with all the required dependencies packaged in)
 
-  mvn clean package
+  mvn clean install
   
 . Run each microservice separately. This is to show that each microservice is indeed its own independed service. Make sure to adjust the ports of the microservices so that they don't collide (use the PORT environment variable).
 
