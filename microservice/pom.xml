@@ -97,16 +97,6 @@
                 <version>1.4.190</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.javaee7.wildfly.samples</groupId>
-                <artifactId>services</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.javaee7.wildfly.samples</groupId>
-                <artifactId>contracts</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.apache.curator</groupId>

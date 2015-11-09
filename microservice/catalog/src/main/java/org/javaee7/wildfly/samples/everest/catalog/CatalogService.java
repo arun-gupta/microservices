@@ -1,7 +1,6 @@
 package org.javaee7.wildfly.samples.everest.catalog;
 
 import org.javaee7.wildfly.samples.services.ZooKeeperServices;
-import org.javaee7.wildfly.samples.services.eager.Eager;
 import org.javaee7.wildfly.samples.services.registration.ServiceRegistry;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +11,6 @@ import javax.inject.Inject;
 /**
  * @author arungupta
  */
-@Eager
 @ApplicationScoped
 public class CatalogService {
 //    @Inject @FixedServices ServiceRegistry services;
@@ -36,4 +34,6 @@ public class CatalogService {
     public void unregisterService() {
         services.unregisterService(serviceName, endpointURI);
     }
+
+    public void doNothing() {}
 }
