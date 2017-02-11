@@ -9,39 +9,54 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>org.javaee7.wildfly.samples</groupId>
     <artifactId>user</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
 
     <name>user</name>
 
     <dependencies>
         <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-servlet-jetty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-jpa-eclipselink</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-cdi-weld</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-jax-rs-jersey</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee</groupId>
+            <artifactId>kumuluzee-json-p</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.javaee7.wildfly.samples</groupId>
             <artifactId>services</artifactId>
-        </dependency>  
-        <dependency>
-            <groupId>eu.agilejava</groupId>
-            <artifactId>snoop</artifactId>
-        </dependency>  
-        <dependency>
-            <groupId>org.javaee7.wildfly.samples</groupId>
-            <artifactId>utils</artifactId>
         </dependency>
     </dependencies>
-    
+
     <build>
-        <finalName>user</finalName>
         <plugins>
             <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <configuration>
-                    <skip>false</skip>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
             </plugin>
-
             <plugin>
                 <groupId>org.jolokia</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
@@ -51,11 +66,9 @@
                             <alias>user</alias>
                             <name>arungupta/shoppingcart-user</name>
                             <build>
-                                <from>jboss/wildfly</from>
+                                <from>java:8</from>
                                 <assembly>
                                     <descriptor>assembly.xml</descriptor>
-                                    <basedir>/opt/jboss/wildfly/standalone/deployments</basedir>
-                                    <user>jboss:jboss:jboss</user>
                                 </assembly>
                                 <ports>
                                     <port>8080</port>
@@ -63,7 +76,7 @@
                             </build>
                             <run>
                                 <ports>
-                                    <port>user.port:8080</port>
+                                    <port>user.port:8082</port>
                                 </ports>
                             </run>
                         </image>
@@ -73,4 +86,25 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>kumuluzee</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
